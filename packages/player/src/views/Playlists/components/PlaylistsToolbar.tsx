@@ -32,7 +32,7 @@ export const PlaylistsToolbar: FC<PlaylistsToolbarProps> = ({
   const { openCreateDialog } = useCreatePlaylistContext();
 
   return (
-    <div className="mb-4 flex items-center gap-2">
+    <div className="mb-4 flex flex-wrap items-center gap-2">
       <Button onClick={openCreateDialog} data-testid="create-playlist-button">
         <Plus size={16} />
         {t('create')}

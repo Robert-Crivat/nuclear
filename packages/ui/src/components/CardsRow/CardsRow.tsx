@@ -61,7 +61,7 @@ const CardsRowBase: FC<CardsRowProps> = ({
             </Badge>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 max-sm:hidden">
           <Input
             data-testid="cards-row-filter"
             size="sm"

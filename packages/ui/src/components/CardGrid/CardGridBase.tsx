@@ -15,7 +15,7 @@ export const CardGridBase: FC<CardGridBaseProps> = ({
 }) => (
   <div
     className={cn(
-      'grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4',
+      'grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4 max-sm:grid-cols-2',
       className,
     )}
     role="grid"

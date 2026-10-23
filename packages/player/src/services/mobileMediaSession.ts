@@ -7,14 +7,17 @@ import { useSoundStore } from '../stores/soundStore';
 import { errorMessage } from '../utils/errorMessage';
 import { isMobilePlatform } from '../utils/platform';
 import { secondsToMs } from '../utils/time';
+import { trackArtworkUrl } from '../utils/trackArtwork';
 import { Logger } from './logger';
+import { initMobileMediaLibrary, playMediaId } from './mobileMediaLibrary';
 import { playbackManager } from './playback';
 
 const PLUGIN = 'nuclear-android';
 
 type MediaAction = {
-  action: 'play' | 'pause' | 'next' | 'previous' | 'seek';
+  action: 'play' | 'pause' | 'next' | 'previous' | 'seek' | 'playMediaId';
   positionMs?: number;
+  mediaId?: string;
 };
 
 let sessionStarted = false;
@@ -50,7 +53,7 @@ const updateSession = () => {
     title: track.title,
     artist: formatArtistNames(track.artists),
     album: track.album?.title,
-    artworkUrl: track.artwork?.items[0]?.url,
+    artworkUrl: trackArtworkUrl(track, 'cover', 512),
     isPlaying,
     positionMs: Math.round(secondsToMs(seek)),
     durationMs: Number.isFinite(duration)
@@ -59,7 +62,7 @@ const updateSession = () => {
   }).catch(logFailure);
 };
 
-const handleAction = ({ action, positionMs }: MediaAction) => {
+const handleAction = ({ action, positionMs, mediaId }: MediaAction) => {
   switch (action) {
     case 'play':
       return playbackManager.play();
@@ -71,6 +74,8 @@ const handleAction = ({ action, positionMs }: MediaAction) => {
       return useQueueStore.getState().goToPrevious();
     case 'seek':
       return useSoundStore.getState().seekTo((positionMs ?? 0) / 1000);
+    case 'playMediaId':
+      return mediaId ? playMediaId(mediaId) : undefined;
   }
 };
 
@@ -78,6 +83,7 @@ export const initMobileMediaSession = async () => {
   if (!isMobilePlatform()) {
     return;
   }
+  initMobileMediaLibrary();
 
   let previousItemId: string | undefined;
   useQueueStore.subscribe((state) => {

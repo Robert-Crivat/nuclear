@@ -1,6 +1,7 @@
 package com.nuclearplayer
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
@@ -13,6 +14,8 @@ import app.tauri.plugin.JSObject
 import app.tauri.plugin.Plugin
 import com.yausername.youtubedl_android.YoutubeDL
 import com.yausername.youtubedl_android.YoutubeDLRequest
+import androidx.core.content.FileProvider
+import java.io.File
 import java.util.concurrent.Executors
 
 @InvokeArg
@@ -32,6 +35,24 @@ class MediaSessionArgs {
 }
 
 @InvokeArg
+class BrowseItemArgs {
+  var mediaId: String = ""
+  var title: String = ""
+  var subtitle: String? = null
+  var isPlayable: Boolean = false
+}
+
+@InvokeArg
+class BrowseTreeArgs {
+  var tree: Map<String, List<BrowseItemArgs>> = emptyMap()
+}
+
+@InvokeArg
+class InstallApkArgs {
+  var path: String = ""
+}
+
+@InvokeArg
 class SystemBarColorsArgs {
   var top: String = "#000000"
   var bottom: String = "#000000"
@@ -43,10 +64,13 @@ class NuclearPlugin(private val activity: Activity) : Plugin(activity) {
   private val mainHandler = Handler(Looper.getMainLooper())
 
   override fun load(webView: WebView) {
-    MediaPlaybackService.onAction = { action, positionMs ->
+    MediaPlaybackService.onAction = { action, positionMs, mediaId ->
       val payload = JSObject().put("action", action)
       if (positionMs != null) {
         payload.put("positionMs", positionMs)
+      }
+      if (mediaId != null) {
+        payload.put("mediaId", mediaId)
       }
       trigger("mediaAction", payload)
     }
@@ -125,9 +149,34 @@ class NuclearPlugin(private val activity: Activity) : Plugin(activity) {
   fun setSystemBarColors(invoke: Invoke) {
     val args = invoke.parseArgs(SystemBarColorsArgs::class.java)
     runOnMain(invoke) {
-      (activity as? MainActivity)?.setSystemBarColors(
+      MainActivity.setSystemBarColors(
         Color.parseColor(args.top),
         Color.parseColor(args.bottom)
+      )
+    }
+  }
+
+  @Command
+  fun installApk(invoke: Invoke) {
+    val path = invoke.parseArgs(InstallApkArgs::class.java).path
+    runOnMain(invoke) {
+      val context = activity.applicationContext
+      val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", File(path))
+      val intent = Intent(Intent.ACTION_VIEW)
+        .setDataAndType(uri, "application/vnd.android.package-archive")
+        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
+      context.startActivity(intent)
+    }
+  }
+
+  @Command
+  fun setBrowseTree(invoke: Invoke) {
+    val tree = invoke.parseArgs(BrowseTreeArgs::class.java).tree
+    runOnMain(invoke) {
+      MediaPlaybackService.updateBrowseTree(
+        tree.mapValues { (_, items) ->
+          items.map { BrowseItem(it.mediaId, it.title, it.subtitle, it.isPlayable) }
+        }
       )
     }
   }

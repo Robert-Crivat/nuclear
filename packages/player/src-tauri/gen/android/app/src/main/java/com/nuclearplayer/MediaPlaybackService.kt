@@ -4,19 +4,21 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
-import android.os.IBinder
+import android.os.Bundle
+import android.support.v4.media.MediaBrowserCompat
+import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.media.MediaBrowserServiceCompat
 import androidx.media.app.NotificationCompat.MediaStyle
 import androidx.media.session.MediaButtonReceiver
 import java.net.URL
@@ -32,7 +34,14 @@ data class MediaState(
   val durationMs: Long,
 )
 
-class MediaPlaybackService : Service() {
+data class BrowseItem(
+  val mediaId: String,
+  val title: String,
+  val subtitle: String?,
+  val isPlayable: Boolean,
+)
+
+class MediaPlaybackService : MediaBrowserServiceCompat() {
   companion object {
     private const val CHANNEL_ID = "playback"
     private const val NOTIFICATION_ID = 1
@@ -41,7 +50,17 @@ class MediaPlaybackService : Service() {
     var running = false
       private set
 
-    var onAction: ((String, Long?) -> Unit)? = null
+    var onAction: ((String, Long?, String?) -> Unit)? = null
+
+    const val ROOT_ID = "root"
+
+    @Volatile
+    private var browseTree: Map<String, List<BrowseItem>> = emptyMap()
+
+    fun updateBrowseTree(tree: Map<String, List<BrowseItem>>) {
+      browseTree = tree
+      instance?.let { service -> tree.keys.forEach { service.notifyChildrenChanged(it) } }
+    }
 
     private var instance: MediaPlaybackService? = null
     private var pendingState: MediaState? = null
@@ -84,10 +103,16 @@ class MediaPlaybackService : Service() {
         override fun onSkipToPrevious() = dispatch("previous")
         override fun onStop() = dispatch("pause")
         override fun onSeekTo(pos: Long) = dispatch("seek", pos)
+        override fun onPlayFromMediaId(mediaId: String?, extras: Bundle?) {
+          if (mediaId != null) {
+            dispatch("playMediaId", mediaId = mediaId)
+          }
+        }
       })
       setSessionActivity(launchIntent())
       isActive = true
     }
+    sessionToken = session.sessionToken
     instance = this
     running = true
   }
@@ -118,10 +143,30 @@ class MediaPlaybackService : Service() {
     super.onDestroy()
   }
 
-  override fun onBind(intent: Intent?): IBinder? = null
+  override fun onGetRoot(clientPackageName: String, clientUid: Int, rootHints: Bundle?) =
+    BrowserRoot(ROOT_ID, null)
 
-  private fun dispatch(action: String, position: Long? = null) {
-    onAction?.invoke(action, position)
+  override fun onLoadChildren(
+    parentId: String,
+    result: Result<MutableList<MediaBrowserCompat.MediaItem>>
+  ) {
+    val items = browseTree[parentId].orEmpty().map { item ->
+      val description = MediaDescriptionCompat.Builder()
+        .setMediaId(item.mediaId)
+        .setTitle(item.title)
+        .setSubtitle(item.subtitle)
+        .build()
+      MediaBrowserCompat.MediaItem(
+        description,
+        if (item.isPlayable) MediaBrowserCompat.MediaItem.FLAG_PLAYABLE
+        else MediaBrowserCompat.MediaItem.FLAG_BROWSABLE
+      )
+    }
+    result.sendResult(items.toMutableList())
+  }
+
+  private fun dispatch(action: String, position: Long? = null, mediaId: String? = null) {
+    onAction?.invoke(action, position, mediaId)
   }
 
   private fun apply(newState: MediaState) {

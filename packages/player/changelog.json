@@ -1,13 +1,25 @@
 [
   {
     "date": "2026-10-23T00:00",
-    "description": "Nuclear now runs on Android. Search, stream from YouTube and other plugins, and keep listening in the background with lock screen and notification controls.",
+    "description": "Nuclear now runs on Android, with a phone layout built around Home, Search and Library tabs, a mini player and a full screen now playing view. Music keeps playing in the background with lock screen and notification controls, works with Android Auto, and the app updates itself from GitHub releases.",
     "type": "feature",
     "contributors": ["Robert-Crivat"],
     "tags": [
       {
         "label": "Android",
         "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
+    "description": "Skipping to the next track is faster: Nuclear now resolves its stream while the current track is still playing.",
+    "type": "improvement",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
       }
     ]
   },

@@ -1,6 +1,7 @@
 package com.nuclearplayer
 
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.Paint
 import android.graphics.PixelFormat
@@ -14,16 +15,19 @@ import androidx.core.graphics.ColorUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import java.lang.ref.WeakReference
 
-private class SystemBarsBackground(private val view: View) : Drawable() {
+private class SystemBarsBackground : Drawable() {
   val topPaint = Paint()
   val bottomPaint = Paint()
+  var topInset = 0
+  var bottomInset = 0
 
   override fun draw(canvas: Canvas) {
     val width = bounds.width().toFloat()
     val height = bounds.height().toFloat()
-    canvas.drawRect(0f, 0f, width, view.paddingTop.toFloat(), topPaint)
-    canvas.drawRect(0f, height - view.paddingBottom, width, height, bottomPaint)
+    canvas.drawRect(0f, 0f, width, topInset.toFloat(), topPaint)
+    canvas.drawRect(0f, height - bottomInset, width, height, bottomPaint)
   }
 
   override fun setAlpha(alpha: Int) {}
@@ -35,34 +39,50 @@ private class SystemBarsBackground(private val view: View) : Drawable() {
 }
 
 class MainActivity : TauriActivity() {
+  companion object {
+    private var current = WeakReference<MainActivity>(null)
+    private var topColor = Color.BLACK
+    private var bottomColor = Color.BLACK
+
+    fun setSystemBarColors(top: Int, bottom: Int) {
+      topColor = top
+      bottomColor = bottom
+      current.get()?.applySystemBarColors()
+    }
+  }
+
   private var webView: WebView? = null
-  private lateinit var content: View
-  private lateinit var systemBarsBackground: SystemBarsBackground
+  private val systemBarsBackground = SystemBarsBackground()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
     super.onCreate(savedInstanceState)
-    content = findViewById(android.R.id.content)
-    systemBarsBackground = SystemBarsBackground(content)
-    content.background = systemBarsBackground
-    ViewCompat.setOnApplyWindowInsetsListener(content) { view, insets ->
+    val decor = window.decorView
+    decor.background = systemBarsBackground
+    ViewCompat.setOnApplyWindowInsetsListener(decor) { _, insets ->
       val bars = insets.getInsets(
         WindowInsetsCompat.Type.systemBars() or
           WindowInsetsCompat.Type.displayCutout() or
           WindowInsetsCompat.Type.ime()
       )
-      view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+      findViewById<View>(android.R.id.content)
+        .setPadding(bars.left, bars.top, bars.right, bars.bottom)
+      systemBarsBackground.topInset = bars.top
+      systemBarsBackground.bottomInset = bars.bottom
+      decor.invalidate()
       WindowInsetsCompat.CONSUMED
     }
+    current = WeakReference(this)
+    applySystemBarColors()
   }
 
-  fun setSystemBarColors(top: Int, bottom: Int) {
-    systemBarsBackground.topPaint.color = top
-    systemBarsBackground.bottomPaint.color = bottom
-    content.invalidate()
+  private fun applySystemBarColors() {
+    systemBarsBackground.topPaint.color = topColor
+    systemBarsBackground.bottomPaint.color = bottomColor
+    window.decorView.invalidate()
     WindowCompat.getInsetsController(window, window.decorView).apply {
-      isAppearanceLightStatusBars = ColorUtils.calculateLuminance(top) > 0.5
-      isAppearanceLightNavigationBars = ColorUtils.calculateLuminance(bottom) > 0.5
+      isAppearanceLightStatusBars = ColorUtils.calculateLuminance(topColor) > 0.5
+      isAppearanceLightNavigationBars = ColorUtils.calculateLuminance(bottomColor) > 0.5
     }
   }
 

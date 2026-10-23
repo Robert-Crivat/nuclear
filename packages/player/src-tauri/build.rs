@@ -7,6 +7,8 @@ fn main() {
                     "updateMediaSession",
                     "stopMediaSession",
                     "setSystemBarColors",
+                    "installApk",
+                    "setBrowseTree",
                     "registerListener",
                     "removeListener",
                 ])

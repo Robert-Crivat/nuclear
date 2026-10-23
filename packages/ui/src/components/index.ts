@@ -63,3 +63,6 @@ export * from './Wallpaper';
 export * from '../providers/PlatformProvider';
 export * from '../utils/time';
 export * from './TrackTable';
+export * from './BottomNavigation';
+export * from './MiniPlayer';
+export * from './NowPlaying';

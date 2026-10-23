@@ -203,11 +203,10 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install Android NDK
-        run: sdkmanager "ndk;27.1.12297006"
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;27.1.12297006"
+          echo "NDK_HOME=$ANDROID_HOME/ndk/27.1.12297006" >> "$GITHUB_ENV"
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -242,8 +241,6 @@ jobs:
           } > packages/player/src-tauri/gen/android/keystore.properties
 
       - name: Build APK
-        env:
-          NDK_HOME: ${{ env.ANDROID_HOME }}/ndk/27.1.12297006
         run: pnpm --filter @nuclearplayer/player tauri android build --apk --target aarch64 --target armv7 --target x86_64
 
       - name: Rename APK

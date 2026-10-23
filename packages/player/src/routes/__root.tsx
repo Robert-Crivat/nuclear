@@ -3,7 +3,6 @@ import { getCurrentWindow } from '@tauri-apps/api/window';
 import { FC, useEffect, useState } from 'react';
 
 import {
-  Drawer,
   PlayerShell,
   PlayerWorkspace,
   RouteTransition,
@@ -11,7 +10,6 @@ import {
   Toaster,
 } from '@nuclearplayer/ui';
 
-import { ConnectedMobileTopBar } from '../components/ConnectedMobileTopBar';
 import { ConnectedPlayerBar } from '../components/ConnectedPlayerBar';
 import {
   ConnectedQueuePanel,
@@ -23,6 +21,10 @@ import { ConnectedTitleBar } from '../components/ConnectedTitleBar';
 import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
+import { ConnectedMiniPlayer } from '../components/mobile/ConnectedMiniPlayer';
+import { ConnectedNowPlayingScreen } from '../components/mobile/ConnectedNowPlayingScreen';
+import { MobileHeader } from '../components/mobile/MobileHeader';
+import { MobileTabBar } from '../components/mobile/MobileTabBar';
 import { MobileQueueDrawer } from '../components/MobileQueueDrawer';
 import { NavigationItems } from '../components/NavigationItems';
 import { SoundProvider } from '../components/SoundProvider';
@@ -99,47 +101,46 @@ const MobileRoot: FC = () => {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
-  const [isNavigationOpen, setNavigationOpen] = useState(false);
+  const [isNowPlayingOpen, setNowPlayingOpen] = useState(false);
   const [isQueueOpen, setQueueOpen] = useState(false);
   useSystemBarColors();
 
   useEffect(() => {
-    setNavigationOpen(false);
+    setNowPlayingOpen(false);
     setQueueOpen(false);
   }, [pathname]);
 
   return (
     <PlayerShell>
-      <ConnectedMobileTopBar
-        onOpenNavigation={() => setNavigationOpen(true)}
-        onOpenQueue={() => setQueueOpen(true)}
-      />
+      <div data-system-bar="top" className="surface-topbar">
+        <MobileHeader />
+      </div>
       {!isStartingUp && <StreamResolver />}
       <SoundProvider>
         <PlayerWorkspace.Main className="min-h-0">
           <RouteTransition />
         </PlayerWorkspace.Main>
       </SoundProvider>
-      <div>
-        <ConnectedPlayerBar isCompact />
-      </div>
-
-      <Drawer
-        isOpen={isNavigationOpen}
-        onClose={() => setNavigationOpen(false)}
-        side="left"
-        className="p-2"
-        data-testid="mobile-navigation-drawer"
+      <footer
+        data-system-bar="bottom"
+        className="surface-bottombar border-border flex flex-col border-t-(length:--border-width)"
       >
-        <SidebarNavigation>
-          <NavigationItems />
-        </SidebarNavigation>
-      </Drawer>
+        <div className="px-2 pt-2 empty:hidden">
+          <ConnectedMiniPlayer onOpen={() => setNowPlayingOpen(true)} />
+        </div>
+        <MobileTabBar />
+      </footer>
+
+      <ConnectedNowPlayingScreen
+        isOpen={isNowPlayingOpen}
+        onClose={() => setNowPlayingOpen(false)}
+        onOpenQueue={() => setQueueOpen(true)}
+      />
       <MobileQueueDrawer
         isOpen={isQueueOpen}
         onClose={() => setQueueOpen(false)}
       />
-      <Toaster />
+      <Toaster position="top-center" />
       <ConnectedSettingsModal />
     </PlayerShell>
   );

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearch } from '@tanstack/react-router';
+import { HistoryIcon } from 'lucide-react';
 import type { FC } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
@@ -18,6 +19,7 @@ import {
 } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
+import { useRecentSearches } from '../../components/SearchBox/useRecentSearches';
 import { useActiveProvider } from '../../hooks/useActiveProvider';
 import { metadataHost } from '../../services/metadataHost';
 import { SearchEmptyState } from './SearchEmptyState';
@@ -109,6 +111,36 @@ const SearchContent: FC<{
   return <Tabs items={tabsItems as TabsItem[]} className="flex-1" />;
 };
 
+const RecentSearches: FC = () => {
+  const { t } = useTranslation('search');
+  const navigate = useNavigate();
+  const recentSearches = useRecentSearches((state) => state.recentSearches);
+
+  if (recentSearches.length === 0) {
+    return null;
+  }
+
+  return (
+    <section
+      data-testid="search-recent-searches"
+      className="flex w-full flex-col gap-2"
+    >
+      <h2 className="text-lg font-bold">{t('recentSearches')}</h2>
+      {recentSearches.map((query) => (
+        <button
+          key={query}
+          type="button"
+          className="flex cursor-pointer items-center gap-3 py-2 text-left"
+          onClick={() => navigate({ to: '/search', search: { q: query } })}
+        >
+          <HistoryIcon size={16} className="shrink-0 opacity-60" />
+          <span className="truncate">{query}</span>
+        </button>
+      ))}
+    </section>
+  );
+};
+
 export const Search: FC = () => {
   const { t } = useTranslation(['search', 'common']);
   const { q } = useSearch({ from: '/search' });
@@ -134,15 +166,19 @@ export const Search: FC = () => {
     <ViewShell
       data-testid="search-view"
       title={t('search:title')}
-      subtitle={`${t('search:query')}: "${q}"`}
+      subtitle={q ? `${t('search:query')}: "${q}"` : undefined}
     >
-      <SearchContent
-        provider={provider}
-        isLoading={isLoading}
-        isError={isError}
-        results={results}
-        refetch={refetch}
-      />
+      {q ? (
+        <SearchContent
+          provider={provider}
+          isLoading={isLoading}
+          isError={isError}
+          results={results}
+          refetch={refetch}
+        />
+      ) : (
+        <RecentSearches />
+      )}
     </ViewShell>
   );
 };

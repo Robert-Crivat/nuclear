@@ -21,6 +21,7 @@ import { initMobileMediaSession } from './services/mobileMediaSession';
 import { initMpdHandler } from './services/mpd';
 import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
+import { initNextTrackPrefetch } from './services/streamResolution/nextTrackPrefetch';
 import { initializeFavoritesStore } from './stores/favoritesStore';
 import { initializePlaylistStore } from './stores/playlistStore';
 import { initializeQueueStore } from './stores/queueStore';
@@ -71,6 +72,7 @@ export const initPlayerApp = async (
     .then(() => initMobileMediaSession())
     .then(() => initMobileBackHandler())
     .then(() => initPlaybackEventBridge())
+    .then(() => initNextTrackPrefetch())
     .then(() => initHistoryService())
     .then(() => initLanguage())
     .then(() => initThemes())

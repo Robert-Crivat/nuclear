@@ -379,8 +379,6 @@ const DESKTOP_ONLY_SETTINGS = new Set([
   'appearance.framelessWindow',
   'appearance.customTitleBar',
   'appearance.titleBarStyle',
-  'updates.checkForUpdates',
-  'updates.autoInstall',
   'integrations.discord.enabled',
 ]);
 

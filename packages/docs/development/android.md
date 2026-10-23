@@ -46,9 +46,34 @@ While the service runs, `MainActivity` keeps the WebView resumed when the app go
 
 ### Layout
 
-On Android, `routes/__root.tsx` renders a mobile layout: the sidebars become drawers opened from the top bar, and the player bar shows only the previous, play and next buttons. The queue drawer shows the full controls. Desktop-only settings (window frame, title bar, updates, Discord) are hidden.
+On Android, `routes/__root.tsx` renders a phone layout instead of the desktop sidebars:
 
-The system back button closes the open dialog or drawer first, then goes back in history, then sends the app to the background instead of closing it. The status and navigation bar colors follow the top bar and the player bar.
+- Bottom tabs: Home (`views/Home`), Search, and Library (`views/Library`).
+- Home shows recently played tracks, your playlists, and your favorite albums and artists, followed by the dashboard plugin widgets.
+- A mini player above the tabs opens a full screen now playing view. The queue and the lyrics open from there.
+- Settings open on the list of sections, and each section has a back button.
+
+Desktop-only settings (window frame, title bar, Discord) and the keyboard shortcuts page are hidden.
+
+The system back button works in this order:
+
+1. Closes the open dialog, drawer or now playing view.
+2. Goes back in history.
+3. Sends the app to the background instead of closing it.
+
+The status and navigation bar colors follow the top bar and the bottom bar (`hooks/useSystemBarColors.ts`).
+
+### Android Auto
+
+`MediaPlaybackService` is also a `MediaBrowserService`, so Android Auto can browse the queue, the favorite tracks and the playlists. `services/mobileMediaLibrary.ts` publishes that tree to the service whenever the queue, the favorites or the playlists change, and handles the `playMediaId` action when a track is picked in the car. The app has to be running on the phone, because the WebView that runs the player only starts with the activity.
+
+### Updates
+
+The updater checks the latest GitHub release for an `_android.apk` asset (`services/androidUpdater.ts`). When the release is newer than the app, the update badge downloads the APK into the app cache, and then the system installer takes over through the `installApk` command. Android only accepts the update if it is signed with the same key as the installed app.
+
+### Skipping tracks
+
+When a track starts playing, `services/streamResolution/nextTrackPrefetch.ts` resolves the stream of the next track in the queue, so skipping to it doesn't wait for yt-dlp. This runs on desktop too. It is skipped when shuffle is on, because the next track isn't known in advance.
 
 ### Networking
 
@@ -56,6 +81,6 @@ HTTPS requests from Rust use the Mozilla root certificates bundled with `webpki-
 
 ### Not available on Android
 
-- The in-app updater. Android installs updates through the APK or a store.
-- Discord Rich Presence.
+- Discord Rich Presence. Discord's mobile app has no local presence API.
 - Window controls and the custom title bar.
+- The Nuclear Jam web remote in debug builds. `rust-embed` reads the frontend files from disk in debug builds, and the phone doesn't have them. Release builds embed them.

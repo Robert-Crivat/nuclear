@@ -16,11 +16,11 @@ exports[`FavoriteArtists view > (Snapshot) renders empty state 1`] = `
       transition="[object Object]"
     >
       <div
-        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6 max-sm:px-4 max-sm:pt-4"
         data-testid="favorite-artists-view"
       >
         <h1
-          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold max-sm:mb-4 max-sm:text-2xl"
           data-testid="title"
         >
           Favorite artists
@@ -101,11 +101,11 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
       transition="[object Object]"
     >
       <div
-        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6 max-sm:px-4 max-sm:pt-4"
         data-testid="favorite-artists-view"
       >
         <h1
-          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold max-sm:mb-4 max-sm:text-2xl"
           data-testid="title"
         >
           Favorite artists
@@ -118,7 +118,7 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
             style="scrollbar-width: none;"
           >
             <div
-              class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4"
+              class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4 max-sm:grid-cols-2"
               role="grid"
             >
               <button

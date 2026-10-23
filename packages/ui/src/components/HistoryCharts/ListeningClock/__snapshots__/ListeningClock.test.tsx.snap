@@ -3,7 +3,7 @@
 exports[`ListeningClock > (Snapshot) renders a full day of listening data 1`] = `
 <div>
   <div
-    class="flex items-center gap-8"
+    class="flex items-center gap-8 max-sm:flex-col max-sm:items-start"
     data-testid="listening-clock"
   >
     <div

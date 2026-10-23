@@ -12,6 +12,7 @@ const drawerPanelVariants = cva(
         left: 'left-0 border-r-(length:--border-width) data-closed:-translate-x-full',
         right:
           'right-0 border-l-(length:--border-width) data-closed:translate-x-full',
+        bottom: 'inset-x-0 top-0 w-full data-closed:translate-y-full',
       },
     },
     defaultVariants: {

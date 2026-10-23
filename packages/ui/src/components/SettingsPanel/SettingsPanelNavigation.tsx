@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 
+import { cn } from '../../utils';
 import { ScrollableArea } from '../ScrollableArea/ScrollableArea';
 import { SettingsNavigationSection } from './SettingsPanel';
 import { SettingsPanelNavigationSection } from './SettingsPanelNavigationSection';
@@ -7,13 +8,20 @@ import { SettingsPanelNavigationSection } from './SettingsPanelNavigationSection
 type SettingsPanelNavigationProps = {
   sections: SettingsNavigationSection[];
   footer?: ReactNode;
+  className?: string;
 };
 
 export const SettingsPanelNavigation: FC<SettingsPanelNavigationProps> = ({
   sections,
   footer,
+  className,
 }) => (
-  <nav className="border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width) max-sm:max-h-[30%] max-sm:w-full max-sm:border-r-0 max-sm:border-b-(length:--border-width)">
+  <nav
+    className={cn(
+      'border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width) max-sm:w-full max-sm:border-r-0',
+      className,
+    )}
+  >
     <ScrollableArea viewportClassName="gap-4 p-4">
       {sections.map((section) => (
         <SettingsPanelNavigationSection key={section.id} section={section} />

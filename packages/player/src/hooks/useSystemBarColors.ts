@@ -27,20 +27,28 @@ const backgroundOf = (selector: string) => {
   return color ? toHex(color) : undefined;
 };
 
+const RETRY_DELAY_MS = 1000;
+
 export const useSystemBarColors = () => {
   useEffect(() => {
     let lastSent = '';
+    let retryTimer: ReturnType<typeof setTimeout> | undefined;
+
     const sync = () => {
-      const top = backgroundOf('header');
-      const bottom = backgroundOf('footer');
-      if (!top || !bottom || `${top}${bottom}` === lastSent) {
+      const top = backgroundOf('[data-system-bar="top"]');
+      const bottom = backgroundOf('[data-system-bar="bottom"]');
+      const colors = `${top}${bottom}`;
+      if (!top || !bottom || colors === lastSent) {
         return;
       }
-      lastSent = `${top}${bottom}`;
-      invoke('plugin:nuclear-android|setSystemBarColors', {
-        top,
-        bottom,
-      }).catch(() => {});
+      invoke('plugin:nuclear-android|setSystemBarColors', { top, bottom })
+        .then(() => {
+          lastSent = colors;
+        })
+        .catch(() => {
+          clearTimeout(retryTimer);
+          retryTimer = setTimeout(sync, RETRY_DELAY_MS);
+        });
     };
 
     const observer = new MutationObserver(sync);
@@ -51,6 +59,9 @@ export const useSystemBarColors = () => {
     observer.observe(document.head, { childList: true, subtree: true });
     sync();
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(retryTimer);
+    };
   }, []);
 };

@@ -15,7 +15,7 @@ export type LogViewerProps = {
   scopes: string[];
   onClear: () => void;
   onExport: () => void | Promise<void>;
-  onOpenLogFolder: () => void;
+  onOpenLogFolder?: () => void;
   labels?: Partial<LogViewerLabels>;
   className?: string;
 };

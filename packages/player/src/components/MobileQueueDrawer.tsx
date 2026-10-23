@@ -23,6 +23,7 @@ export const MobileQueueDrawer: FC<MobileQueueDrawerProps> = ({
       isOpen={isOpen}
       onClose={onClose}
       side="right"
+      className="w-full"
       data-testid="mobile-queue-drawer"
     >
       <div className="flex items-center justify-between gap-2 p-2">

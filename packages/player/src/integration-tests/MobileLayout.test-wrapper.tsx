@@ -12,11 +12,11 @@ const user = userEvent.setup();
 export const MobileLayoutWrapper = {
   router: null as ReturnType<typeof createRouter> | null,
 
-  async mount(): Promise<RenderResult> {
+  async mount(initialPath = '/'): Promise<RenderResult> {
     await initializeSettingsStore();
     registerBuiltInCoreSettings();
 
-    const history = createMemoryHistory({ initialEntries: ['/dashboard'] });
+    const history = createMemoryHistory({ initialEntries: [initialPath] });
     this.router = createRouter({ routeTree, history });
     const result = render(<App routerProp={this.router} />);
     await screen.findByTestId('player-workspace-main');
@@ -31,31 +31,48 @@ export const MobileLayoutWrapper = {
     return screen.queryAllByTestId(/^sidebar-(left|right)$/);
   },
 
-  get playerShuffleButton() {
-    return screen.queryByTestId('player-shuffle-button');
-  },
-
-  navigationButton: {
-    async click() {
-      await user.click(screen.getByTestId('mobile-navigation-button'));
+  tabs: {
+    async open(name: 'home' | 'search' | 'library') {
+      await user.click(screen.getByTestId(`tab-${name}`));
     },
-  },
-
-  navigationDrawer: {
-    get element() {
-      return screen.queryByTestId('mobile-navigation-drawer-panel');
-    },
-    async goTo(label: string) {
-      const drawer = await screen.findByTestId(
-        'mobile-navigation-drawer-panel',
+    isActive(name: 'home' | 'search' | 'library') {
+      return (
+        screen.getByTestId(`tab-${name}`).getAttribute('aria-current') ===
+        'page'
       );
-      await user.click(within(drawer).getByText(label));
     },
   },
 
-  queueButton: {
-    async click() {
-      await user.click(screen.getByTestId('mobile-queue-button'));
+  get homeView() {
+    return screen.queryByTestId('home-view');
+  },
+
+  get homePlaylistsRow() {
+    return screen.queryByTestId('home-playlists');
+  },
+
+  library: {
+    async open(label: string) {
+      const view = await screen.findByTestId('library-view');
+      await user.click(within(view).getByText(label));
+    },
+  },
+
+  miniPlayer: {
+    get element() {
+      return screen.queryByTestId('mini-player');
+    },
+    async open() {
+      await user.click(screen.getByTestId('mini-player-open'));
+    },
+  },
+
+  nowPlaying: {
+    async find() {
+      return screen.findByTestId('now-playing');
+    },
+    async openQueue() {
+      await user.click(screen.getByTestId('now-playing-queue'));
     },
   },
 
@@ -65,14 +82,21 @@ export const MobileLayoutWrapper = {
     },
   },
 
-  async openGeneralSettings() {
-    await this.navigationButton.click();
-    await this.navigationDrawer.goTo('Preferences');
-    await user.click(await screen.findByRole('button', { name: 'General' }));
-    await screen.findByRole('heading', { name: 'General', level: 1 });
-  },
-
-  get customTitleBarToggle() {
-    return screen.queryByRole('switch', { name: 'Custom title bar' });
+  settings: {
+    async open() {
+      await user.click(screen.getByTestId('mobile-settings-button'));
+    },
+    async select(label: string) {
+      await user.click(await screen.findByRole('button', { name: label }));
+    },
+    async back() {
+      await user.click(screen.getByTestId('settings-back-to-navigation'));
+    },
+    get backButton() {
+      return screen.queryByTestId('settings-back-to-navigation');
+    },
+    get customTitleBarToggle() {
+      return screen.queryByRole('switch', { name: 'Custom title bar' });
+    },
   },
 };

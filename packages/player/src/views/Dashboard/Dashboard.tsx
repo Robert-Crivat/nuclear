@@ -28,8 +28,7 @@ const DashboardContent: FC<{
   ));
 };
 
-export const Dashboard: FC = () => {
-  const { t } = useTranslation('dashboard');
+export const DashboardWidgets: FC = () => {
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
   const providers = useProviders('dashboard') as DashboardProvider[];
 
@@ -44,11 +43,19 @@ export const Dashboard: FC = () => {
   }, [providers]);
 
   return (
+    <DashboardContent
+      isStartingUp={isStartingUp}
+      activeWidgets={activeWidgets}
+    />
+  );
+};
+
+export const Dashboard: FC = () => {
+  const { t } = useTranslation('dashboard');
+
+  return (
     <ViewShell data-testid="dashboard-view" title={t('title')}>
-      <DashboardContent
-        isStartingUp={isStartingUp}
-        activeWidgets={activeWidgets}
-      />
+      <DashboardWidgets />
     </ViewShell>
   );
 };

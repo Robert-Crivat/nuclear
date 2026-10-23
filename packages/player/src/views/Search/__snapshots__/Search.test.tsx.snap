@@ -708,11 +708,11 @@ exports[`Search view > (Snapshot) renders the search view 1`] = `
             transition="[object Object]"
           >
             <div
-              class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+              class="surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6 max-sm:px-4 max-sm:pt-4"
               data-testid="search-view"
             >
               <h1
-                class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+                class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold max-sm:mb-4 max-sm:text-2xl"
                 data-testid="title"
               >
                 Search
