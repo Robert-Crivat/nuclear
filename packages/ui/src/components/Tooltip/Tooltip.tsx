@@ -47,8 +47,12 @@ export const Tooltip: FC<TooltipProps> = ({
     <div
       ref={refs.setReference}
       className={wrapperClassName}
-      onMouseEnter={disabled ? undefined : () => setIsOpen(true)}
-      onMouseLeave={disabled ? undefined : () => setIsOpen(false)}
+      onPointerEnter={
+        disabled
+          ? undefined
+          : (event) => setIsOpen(event.pointerType !== 'touch')
+      }
+      onPointerLeave={disabled ? undefined : () => setIsOpen(false)}
     >
       {children}
       {isOpen &&

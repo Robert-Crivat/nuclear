@@ -2,11 +2,11 @@
 
 exports[`NowPlaying > (Snapshot) renders the current track 1`] = `
 <div
-  class="surface-background flex h-full w-full flex-col gap-6 overflow-y-auto px-6 pt-4 pb-6"
+  class="surface-background flex h-full w-full flex-col gap-6 overflow-y-auto px-6 pt-4 pb-6 landscape:grid landscape:grid-cols-2 landscape:grid-rows-[auto_minmax(0,1fr)] landscape:gap-x-8"
   data-testid="now-playing"
 >
   <div
-    class="flex items-center gap-2"
+    class="flex items-center gap-2 landscape:col-span-2"
   >
     <button
       aria-label="Close now playing"
@@ -43,10 +43,10 @@ exports[`NowPlaying > (Snapshot) renders the current track 1`] = `
     />
   </div>
   <div
-    class="flex flex-1 items-center justify-center"
+    class="flex flex-1 items-center justify-center landscape:min-h-0"
   >
     <div
-      class="border-border bg-muted shadow-shadow flex aspect-square w-full max-w-sm items-center justify-center overflow-hidden rounded-md border-(length:--border-width)"
+      class="border-border bg-muted shadow-shadow flex aspect-square w-full max-w-sm items-center justify-center overflow-hidden rounded-md border-(length:--border-width) landscape:h-full landscape:w-auto"
     >
       <svg
         aria-hidden="true"
@@ -73,41 +73,45 @@ exports[`NowPlaying > (Snapshot) renders the current track 1`] = `
     </div>
   </div>
   <div
-    class="flex items-center gap-3"
+    class="flex flex-col gap-6 landscape:justify-center"
   >
     <div
-      class="flex min-w-0 flex-1 flex-col"
+      class="flex items-center gap-3"
     >
-      <span
-        class="truncate text-2xl font-bold"
-        data-testid="now-playing-title"
+      <div
+        class="flex min-w-0 flex-1 flex-col"
       >
-        Around the World
-      </span>
-      <button
-        class="cursor-pointer truncate text-left opacity-70"
-        type="button"
-      >
-        Daft Punk
+        <span
+          class="truncate text-2xl font-bold"
+          data-testid="now-playing-title"
+        >
+          Around the World
+        </span>
+        <button
+          class="cursor-pointer truncate text-left opacity-70"
+          type="button"
+        >
+          Daft Punk
+        </button>
+      </div>
+    </div>
+    <div
+      class="flex flex-col gap-4"
+    >
+      <div>
+        seek bar
+      </div>
+      <div>
+        controls
+      </div>
+    </div>
+    <div
+      class="flex items-center justify-between"
+    >
+      <button>
+        Queue
       </button>
     </div>
-  </div>
-  <div
-    class="flex flex-col gap-4"
-  >
-    <div>
-      seek bar
-    </div>
-    <div>
-      controls
-    </div>
-  </div>
-  <div
-    class="flex items-center justify-between"
-  >
-    <button>
-      Queue
-    </button>
   </div>
 </div>
 `;

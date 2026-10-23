@@ -56,6 +56,7 @@ class InstallApkArgs {
 class SystemBarColorsArgs {
   var top: String = "#000000"
   var bottom: String = "#000000"
+  var side: String = "#000000"
 }
 
 @TauriPlugin
@@ -151,7 +152,8 @@ class NuclearPlugin(private val activity: Activity) : Plugin(activity) {
     runOnMain(invoke) {
       MainActivity.setSystemBarColors(
         Color.parseColor(args.top),
-        Color.parseColor(args.bottom)
+        Color.parseColor(args.bottom),
+        Color.parseColor(args.side)
       )
     }
   }

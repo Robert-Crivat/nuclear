@@ -20,14 +20,19 @@ import java.lang.ref.WeakReference
 private class SystemBarsBackground : Drawable() {
   val topPaint = Paint()
   val bottomPaint = Paint()
+  val sidePaint = Paint()
   var topInset = 0
   var bottomInset = 0
+  var leftInset = 0
+  var rightInset = 0
 
   override fun draw(canvas: Canvas) {
     val width = bounds.width().toFloat()
     val height = bounds.height().toFloat()
     canvas.drawRect(0f, 0f, width, topInset.toFloat(), topPaint)
     canvas.drawRect(0f, height - bottomInset, width, height, bottomPaint)
+    canvas.drawRect(0f, topInset.toFloat(), leftInset.toFloat(), height - bottomInset, sidePaint)
+    canvas.drawRect(width - rightInset, topInset.toFloat(), width, height - bottomInset, sidePaint)
   }
 
   override fun setAlpha(alpha: Int) {}
@@ -43,10 +48,12 @@ class MainActivity : TauriActivity() {
     private var current = WeakReference<MainActivity>(null)
     private var topColor = Color.BLACK
     private var bottomColor = Color.BLACK
+    private var sideColor = Color.BLACK
 
-    fun setSystemBarColors(top: Int, bottom: Int) {
+    fun setSystemBarColors(top: Int, bottom: Int, side: Int) {
       topColor = top
       bottomColor = bottom
+      sideColor = side
       current.get()?.applySystemBarColors()
     }
   }
@@ -69,6 +76,8 @@ class MainActivity : TauriActivity() {
         .setPadding(bars.left, bars.top, bars.right, bars.bottom)
       systemBarsBackground.topInset = bars.top
       systemBarsBackground.bottomInset = bars.bottom
+      systemBarsBackground.leftInset = bars.left
+      systemBarsBackground.rightInset = bars.right
       decor.invalidate()
       WindowInsetsCompat.CONSUMED
     }
@@ -79,6 +88,7 @@ class MainActivity : TauriActivity() {
   private fun applySystemBarColors() {
     systemBarsBackground.topPaint.color = topColor
     systemBarsBackground.bottomPaint.color = bottomColor
+    systemBarsBackground.sidePaint.color = sideColor
     window.decorView.invalidate()
     WindowCompat.getInsetsController(window, window.decorView).apply {
       isAppearanceLightStatusBars = ColorUtils.calculateLuminance(topColor) > 0.5

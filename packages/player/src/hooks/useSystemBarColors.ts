@@ -37,11 +37,16 @@ export const useSystemBarColors = () => {
     const sync = () => {
       const top = backgroundOf('[data-system-bar="top"]');
       const bottom = backgroundOf('[data-system-bar="bottom"]');
-      const colors = `${top}${bottom}`;
+      const side = backgroundOf('body') ?? bottom;
+      const colors = `${top}${bottom}${side}`;
       if (!top || !bottom || colors === lastSent) {
         return;
       }
-      invoke('plugin:nuclear-android|setSystemBarColors', { top, bottom })
+      invoke('plugin:nuclear-android|setSystemBarColors', {
+        top,
+        bottom,
+        side,
+      })
         .then(() => {
           lastSent = colors;
         })

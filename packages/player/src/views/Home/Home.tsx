@@ -20,6 +20,7 @@ export const Home: FC = () => {
   const { t } = useTranslation('home');
   const { t: tNavigation } = useTranslation('navigation');
   const { t: tDashboard } = useTranslation('dashboard');
+  const { t: tTrackTable } = useTranslation('trackTable');
   const navigate = useNavigate();
   const { playNow } = useQueueActions();
   const playlists = usePlaylistStore((state) => state.index);
@@ -30,10 +31,10 @@ export const Home: FC = () => {
     offset: 0,
   });
 
-  const labels = {
-    filterPlaceholder: tDashboard('filter-playlists'),
+  const rowLabels = (filterPlaceholder: string) => ({
+    filterPlaceholder,
     nothingFound: tDashboard('nothing-found'),
-  };
+  });
 
   const recentItems: CardsRowItem[] = uniqBy(
     history?.items ?? [],
@@ -93,7 +94,7 @@ export const Home: FC = () => {
             data-testid="home-recently-played"
             title={t('recentlyPlayed')}
             items={recentItems}
-            labels={labels}
+            labels={rowLabels(tTrackTable('filterPlaceholder'))}
           />
         )}
         {playlistItems.length > 0 && (
@@ -101,7 +102,7 @@ export const Home: FC = () => {
             data-testid="home-playlists"
             title={t('yourPlaylists')}
             items={playlistItems}
-            labels={labels}
+            labels={rowLabels(tDashboard('filter-playlists'))}
           />
         )}
         {albumItems.length > 0 && (
@@ -109,7 +110,7 @@ export const Home: FC = () => {
             data-testid="home-favorite-albums"
             title={t('favoriteAlbums')}
             items={albumItems}
-            labels={labels}
+            labels={rowLabels(tDashboard('filter-albums'))}
           />
         )}
         {artistItems.length > 0 && (
@@ -117,7 +118,7 @@ export const Home: FC = () => {
             data-testid="home-favorite-artists"
             title={t('favoriteArtists')}
             items={artistItems}
-            labels={labels}
+            labels={rowLabels(tDashboard('filter-artists'))}
           />
         )}
         <DashboardWidgets />

@@ -40,6 +40,20 @@ describe('Tooltip', () => {
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   });
 
+  it('does not show tooltip when tapped on a touch screen', async () => {
+    render(
+      <Tooltip content="Settings">
+        <button>Tap me</button>
+      </Tooltip>,
+    );
+
+    await userEvent.pointer({
+      keys: '[TouchA]',
+      target: screen.getByText('Tap me'),
+    });
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  });
+
   it('renders ReactNode content', async () => {
     render(
       <Tooltip content={<span data-testid="custom-content">Custom</span>}>

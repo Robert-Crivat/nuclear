@@ -3,7 +3,7 @@
 exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`] = `
 <DocumentFragment>
   <div
-    class="grid h-screen w-screen grid-rows-[auto_1fr_auto] overflow-hidden"
+    class="grid h-screen w-screen grid-cols-1 grid-rows-[auto_1fr_auto] overflow-hidden"
   >
     <div
       aria-hidden="true"
@@ -1763,7 +1763,7 @@ exports[`Artist view > with bio provider > adds artist to favorites when clickin
 exports[`Artist view > with social stats provider > (Snapshot) renders the artist view with social stats 1`] = `
 <DocumentFragment>
   <div
-    class="grid h-screen w-screen grid-rows-[auto_1fr_auto] overflow-hidden"
+    class="grid h-screen w-screen grid-cols-1 grid-rows-[auto_1fr_auto] overflow-hidden"
   >
     <div
       aria-hidden="true"
