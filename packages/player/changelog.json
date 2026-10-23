@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-10-23T00:00",
+    "description": "YouTube tracks start playing sooner: Nuclear no longer downloads a stream manifest it doesn't use, and on Android yt-dlp stays loaded between tracks.",
+    "type": "improvement",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
     "description": "Plugins start faster: Nuclear keeps their compiled code and only compiles them again after an update.",
     "type": "improvement",
     "contributors": ["Robert-Crivat"],

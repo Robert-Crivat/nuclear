@@ -213,6 +213,8 @@ pub async fn ytdlp_get_stream(
         &[
             "-f",
             "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
+            "--extractor-args",
+            "youtube:skip=hls",
             "--dump-json",
             "--no-playlist",
             "--no-warnings",

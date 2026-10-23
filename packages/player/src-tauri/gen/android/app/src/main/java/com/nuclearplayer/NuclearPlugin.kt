@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.webkit.WebView
 import app.tauri.annotation.Command
 import app.tauri.annotation.InvokeArg
@@ -65,6 +66,13 @@ class NuclearPlugin(private val activity: Activity) : Plugin(activity) {
   private val mainHandler = Handler(Looper.getMainLooper())
 
   override fun load(webView: WebView) {
+    executor.execute {
+      try {
+        YtdlpWorker.warmUp(activity.applicationContext)
+      } catch (error: Exception) {
+        Log.w("NuclearPlugin", "Could not start the yt-dlp worker", error)
+      }
+    }
     MediaPlaybackService.onAction = { action, positionMs, mediaId ->
       val payload = JSObject().put("action", action)
       if (positionMs != null) {
@@ -102,11 +110,17 @@ class NuclearPlugin(private val activity: Activity) : Plugin(activity) {
   fun ytdlpExecute(invoke: Invoke) {
     val args = invoke.parseArgs(YtdlpExecuteArgs::class.java).args
     runInBackground(invoke) {
-      YoutubeDL.getInstance().init(activity.applicationContext)
-      val request = YoutubeDLRequest(emptyList<String>())
-        .addCommands(listOf("--no-js-runtimes") + args)
-      val response = YoutubeDL.getInstance().execute(request)
-      JSObject().put("stdout", response.out)
+      val context = activity.applicationContext
+      val stdout = try {
+        YtdlpWorker.execute(context, listOf("--no-js-runtimes", "--no-cache-dir") + args)
+      } catch (error: YtdlpWorkerUnavailable) {
+        Log.w("NuclearPlugin", "yt-dlp worker unavailable, running yt-dlp directly", error)
+        YoutubeDL.getInstance().init(context)
+        val request = YoutubeDLRequest(emptyList<String>())
+          .addCommands(listOf("--no-js-runtimes") + args)
+        YoutubeDL.getInstance().execute(request).out
+      }
+      JSObject().put("stdout", stdout)
     }
   }
 
@@ -116,7 +130,11 @@ class NuclearPlugin(private val activity: Activity) : Plugin(activity) {
       YoutubeDL.getInstance().init(activity.applicationContext)
       val status = YoutubeDL.getInstance()
         .updateYoutubeDL(activity.applicationContext, YoutubeDL.UpdateChannel.NIGHTLY)
-      JSObject().put("updated", status == YoutubeDL.UpdateStatus.DONE)
+      val updated = status == YoutubeDL.UpdateStatus.DONE
+      if (updated) {
+        YtdlpWorker.stop()
+      }
+      JSObject().put("updated", updated)
     }
   }
 

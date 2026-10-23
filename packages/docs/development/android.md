@@ -36,6 +36,8 @@ The file is git-ignored. The release workflow writes it from the `ANDROID_KEYSTO
 
 Desktop downloads a standalone yt-dlp binary. Android can't run it, so the app bundles [youtubedl-android](https://github.com/yausername/youtubedl-android), which ships Python and yt-dlp. The `ytdlp_*` commands keep the same contract: `src/ytdlp.rs` passes the same arguments to `NuclearPlugin.ytdlpExecute` in Kotlin instead of spawning a process. `ytdlp_ensure_installed` updates the bundled yt-dlp to the latest nightly at most once an hour (`src/ytdlp_setup_android.rs`).
 
+Starting Python and loading yt-dlp takes seconds on a phone, and every track needs three yt-dlp calls (two searches and the stream). `YtdlpWorker.kt` starts one Python process with `assets/ytdlp_worker.py` when the plugin loads. The process keeps yt-dlp in memory, reads one JSON request per line, runs each one in its own thread with `yt_dlp.main`, and writes back its exit code, stdout and stderr. If the worker can't start, `ytdlpExecute` falls back to `YoutubeDL.execute`. The worker restarts after yt-dlp updates.
+
 youtubedl-android also bundles QuickJS so yt-dlp can solve YouTube's JavaScript challenges. On a phone that takes several minutes for every new track. `ytdlpExecute` passes `--no-js-runtimes`, so yt-dlp uses the YouTube clients that don't need a JavaScript runtime and extracts a stream in a few seconds. That is also what happens on desktop when Deno isn't installed.
 
 ### Background playback
