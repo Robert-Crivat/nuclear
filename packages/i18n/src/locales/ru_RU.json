@@ -35,7 +35,23 @@
     "playlists": "Плейлисты",
     "history": "History",
     "lyrics": "Lyrics",
-    "sources": "Sources"
+    "sources": "Sources",
+    "home": "Главная",
+    "library": "Медиатека"
+  },
+  "home": {
+    "recentlyPlayed": "Недавно прослушанное",
+    "yourPlaylists": "Ваши плейлисты",
+    "favoriteAlbums": "Избранные альбомы",
+    "favoriteArtists": "Избранные исполнители",
+    "fromYourPlugins": "Из ваших плагинов"
+  },
+  "nowPlaying": {
+    "title": "Сейчас играет",
+    "open": "Открыть экран воспроизведения",
+    "close": "Закрыть экран воспроизведения",
+    "play": "Воспроизвести",
+    "pause": "Пауза"
   },
   "history": {
     "title": "History",

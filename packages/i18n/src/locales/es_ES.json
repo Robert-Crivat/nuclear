@@ -35,7 +35,23 @@
     "playlists": "Navegación en la lista de reproducción",
     "history": "History",
     "lyrics": "Lyrics",
-    "sources": "Sources"
+    "sources": "Sources",
+    "home": "Inicio",
+    "library": "Biblioteca"
+  },
+  "home": {
+    "recentlyPlayed": "Reproducido recientemente",
+    "yourPlaylists": "Tus listas de reproducción",
+    "favoriteAlbums": "Álbumes favoritos",
+    "favoriteArtists": "Artistas favoritos",
+    "fromYourPlugins": "De tus plugins"
+  },
+  "nowPlaying": {
+    "title": "Reproduciendo ahora",
+    "open": "Abrir reproducción actual",
+    "close": "Cerrar reproducción actual",
+    "play": "Reproducir",
+    "pause": "Pausar"
   },
   "history": {
     "title": "History",

@@ -35,7 +35,23 @@
     "playlists": "Scalette",
     "history": "History",
     "lyrics": "Lyrics",
-    "sources": "Sources"
+    "sources": "Sources",
+    "home": "Home",
+    "library": "Libreria"
+  },
+  "home": {
+    "recentlyPlayed": "Ascoltati di recente",
+    "yourPlaylists": "Le tue scalette",
+    "favoriteAlbums": "Album preferiti",
+    "favoriteArtists": "Artisti preferiti",
+    "fromYourPlugins": "Dalle tue estensioni"
+  },
+  "nowPlaying": {
+    "title": "In riproduzione",
+    "open": "Apri la riproduzione in corso",
+    "close": "Chiudi la riproduzione in corso",
+    "play": "Riproduci",
+    "pause": "Pausa"
   },
   "history": {
     "title": "History",
