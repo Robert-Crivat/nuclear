@@ -303,6 +303,7 @@ The Tauri backend lives in `packages/player/src-tauri/src/`. Modules:
 - `stream_server.rs` - local audio proxy adding CORS + Range so the browser can play blocked streams
 - `http.rs` - `http_fetch` command, a CORS-bypassing HTTP proxy for the frontend
 - `ytdlp.rs` / `ytdlp_setup.rs` - yt-dlp subprocess wrapper; auto-downloads the binary
+- `android.rs` / `ytdlp_setup_android.rs` - Android only: bridge to the Kotlin `NuclearPlugin` in `gen/android` (bundled yt-dlp, media session). See `packages/docs/development/android.md`
 - `discord.rs` - Discord Rich Presence
 - `commands.rs` - filesystem helpers (zip, download, flatpak detection)
 - `net.rs`, `setup.rs`, `logging.rs` - port binding, log plugin config, startup log ring buffer

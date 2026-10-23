@@ -10,7 +10,11 @@ type HeaderValue = string | undefined;
 export function TextHeader<T extends Track>({
   children,
   context,
-}: PropsWithChildren<{ context: HeaderContext<T, HeaderValue> }>) {
+  className,
+}: PropsWithChildren<{
+  context: HeaderContext<T, HeaderValue>;
+  className?: string;
+}>) {
   const { getCanSort, getIsSorted, toggleSorting } = context.column;
 
   const isSorted = getIsSorted();
@@ -25,7 +29,7 @@ export function TextHeader<T extends Track>({
   return (
     <th
       role="columnheader"
-      className={cn('px-2 text-left', { 'cursor-pointer': canSort })}
+      className={cn('px-2 text-left', { 'cursor-pointer': canSort }, className)}
       onClick={onClick}
     >
       <span className="flex items-center">

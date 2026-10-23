@@ -11,7 +11,13 @@ import { playbackManager } from '../../services/playback';
 import { useQueueStore } from '../../stores/queueStore';
 import { useSoundStore } from '../../stores/soundStore';
 
-export const ConnectedControls: FC = () => {
+type ConnectedControlsProps = {
+  isCompact?: boolean;
+};
+
+export const ConnectedControls: FC<ConnectedControlsProps> = ({
+  isCompact = false,
+}) => {
   const { t } = useTranslation('playerBar');
   const [shuffleEnabled, setShuffleEnabled] =
     useCoreSetting<boolean>('playback.shuffle');
@@ -46,6 +52,7 @@ export const ConnectedControls: FC = () => {
 
   return (
     <PlayerBar.Controls
+      isCompact={isCompact}
       isPlaying={status === 'playing'}
       isShuffleActive={Boolean(shuffleEnabled)}
       repeatMode={repeatMode ?? 'off'}

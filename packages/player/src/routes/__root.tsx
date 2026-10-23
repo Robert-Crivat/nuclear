@@ -1,28 +1,17 @@
-import { createRootRoute } from '@tanstack/react-router';
+import { createRootRoute, useRouterState } from '@tanstack/react-router';
 import { getCurrentWindow } from '@tauri-apps/api/window';
-import {
-  CableIcon,
-  DiscIcon,
-  GaugeIcon,
-  HistoryIcon,
-  ListMusicIcon,
-  MicVocalIcon,
-  MusicIcon,
-  SettingsIcon,
-  UserIcon,
-} from 'lucide-react';
-import { useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 
-import { useTranslation } from '@nuclearplayer/i18n';
 import {
+  Drawer,
   PlayerShell,
   PlayerWorkspace,
   RouteTransition,
   SidebarNavigation,
-  SidebarNavigationItem,
   Toaster,
 } from '@nuclearplayer/ui';
 
+import { ConnectedMobileTopBar } from '../components/ConnectedMobileTopBar';
 import { ConnectedPlayerBar } from '../components/ConnectedPlayerBar';
 import {
   ConnectedQueuePanel,
@@ -34,16 +23,17 @@ import { ConnectedTitleBar } from '../components/ConnectedTitleBar';
 import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
+import { MobileQueueDrawer } from '../components/MobileQueueDrawer';
+import { NavigationItems } from '../components/NavigationItems';
 import { SoundProvider } from '../components/SoundProvider';
 import { StreamResolver } from '../components/StreamResolver';
+import { useSystemBarColors } from '../hooks/useSystemBarColors';
 import { GlobalShortcuts } from '../shortcuts';
 import { useLayoutStore } from '../stores/layoutStore';
-import { useSettingsModalStore } from '../stores/settingsModalStore';
 import { useStartupStore } from '../stores/startupStore';
+import { isMobilePlatform } from '../utils/platform';
 
-const RootComponent = () => {
-  const { t } = useTranslation('navigation');
-  const { t: tPrefs } = useTranslation('preferences');
+const DesktopRoot: FC = () => {
   const {
     leftSidebar,
     rightSidebar,
@@ -52,7 +42,6 @@ const RootComponent = () => {
     setLeftSidebarWidth,
     setRightSidebarWidth,
   } = useLayoutStore();
-  const openSettings = useSettingsModalStore((state) => state.open);
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
   useEffect(() => {
     const window = getCurrentWindow();
@@ -76,53 +65,7 @@ const RootComponent = () => {
             onToggle={toggleLeftSidebar}
           >
             <SidebarNavigation isCompact={leftSidebar.isCollapsed}>
-              <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
-                <SidebarNavigationItem
-                  to="/dashboard"
-                  icon={<GaugeIcon />}
-                  label={t('dashboard')}
-                />
-                <SidebarNavigationItem
-                  to="/favorites/albums"
-                  icon={<DiscIcon />}
-                  label={t('favoriteAlbums')}
-                />
-                <SidebarNavigationItem
-                  to="/favorites/tracks"
-                  icon={<MusicIcon />}
-                  label={t('favoriteTracks')}
-                />
-                <SidebarNavigationItem
-                  to="/favorites/artists"
-                  icon={<UserIcon />}
-                  label={t('favoriteArtists')}
-                />
-                <SidebarNavigationItem
-                  to="/playlists"
-                  icon={<ListMusicIcon />}
-                  label={t('playlists')}
-                />
-                <SidebarNavigationItem
-                  to="/history"
-                  icon={<HistoryIcon />}
-                  label={t('history')}
-                />
-                <SidebarNavigationItem
-                  to="/lyrics"
-                  icon={<MicVocalIcon />}
-                  label={t('lyrics')}
-                />
-                <SidebarNavigationItem
-                  to="/sources"
-                  icon={<CableIcon />}
-                  label={t('sources')}
-                />
-              </div>
-              <SidebarNavigationItem
-                icon={<SettingsIcon />}
-                label={tPrefs('title')}
-                onClick={() => openSettings()}
-              />
+              <NavigationItems />
             </SidebarNavigation>
           </PlayerWorkspace.LeftSidebar>
 
@@ -150,6 +93,60 @@ const RootComponent = () => {
     </PlayerShell>
   );
 };
+
+const MobileRoot: FC = () => {
+  const isStartingUp = useStartupStore((state) => state.isStartingUp);
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+  const [isNavigationOpen, setNavigationOpen] = useState(false);
+  const [isQueueOpen, setQueueOpen] = useState(false);
+  useSystemBarColors();
+
+  useEffect(() => {
+    setNavigationOpen(false);
+    setQueueOpen(false);
+  }, [pathname]);
+
+  return (
+    <PlayerShell>
+      <ConnectedMobileTopBar
+        onOpenNavigation={() => setNavigationOpen(true)}
+        onOpenQueue={() => setQueueOpen(true)}
+      />
+      {!isStartingUp && <StreamResolver />}
+      <SoundProvider>
+        <PlayerWorkspace.Main className="min-h-0">
+          <RouteTransition />
+        </PlayerWorkspace.Main>
+      </SoundProvider>
+      <div>
+        <ConnectedPlayerBar isCompact />
+      </div>
+
+      <Drawer
+        isOpen={isNavigationOpen}
+        onClose={() => setNavigationOpen(false)}
+        side="left"
+        className="p-2"
+        data-testid="mobile-navigation-drawer"
+      >
+        <SidebarNavigation>
+          <NavigationItems />
+        </SidebarNavigation>
+      </Drawer>
+      <MobileQueueDrawer
+        isOpen={isQueueOpen}
+        onClose={() => setQueueOpen(false)}
+      />
+      <Toaster />
+      <ConnectedSettingsModal />
+    </PlayerShell>
+  );
+};
+
+const RootComponent: FC = () =>
+  isMobilePlatform() ? <MobileRoot /> : <DesktopRoot />;
 
 export const Route = createRootRoute({
   component: RootComponent,

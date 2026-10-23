@@ -75,6 +75,7 @@ Grab the latest release for your platform from the [Releases page](https://githu
 | Windows | `.exe` installer, `.msi` |
 | macOS | `.dmg` (Apple Silicon and Intel) |
 | Linux | `.AppImage`, `.deb`, `.rpm`, `.flatpak` |
+| Android | `.apk` |
 
 ## Features
 
@@ -171,6 +172,19 @@ pnpm lint           # Lint all packages
 pnpm type-check     # TypeScript checks
 pnpm storybook      # Run Storybook
 ```
+
+### Android
+
+The Android app is the same Tauri app. Besides the prerequisites above you need JDK 17, the Android SDK and NDK ([see the Tauri Android guide](https://v2.tauri.app/start/prerequisites/#android)).
+
+```bash
+export ANDROID_HOME=$HOME/Library/Android/sdk          # or ~/Android/Sdk on Linux
+export NDK_HOME=$ANDROID_HOME/ndk/<version>
+pnpm tauri android dev                                  # Run on a connected device or emulator
+pnpm tauri android build --apk --target aarch64         # Build an APK for 64-bit ARM phones
+```
+
+See [Android](packages/docs/development/android.md) for how the Android build differs from desktop.
 
 ## Community
 

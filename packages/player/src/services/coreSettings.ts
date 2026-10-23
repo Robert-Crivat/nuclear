@@ -1,6 +1,7 @@
 import type { SettingDefinition } from '@nuclearplayer/plugin-sdk';
 
 import { registerCoreSettings } from '../stores/settingsStore';
+import { isMobilePlatform } from '../utils/platform';
 
 const LANGUAGE_OPTIONS = [
   { value: 'en_US', label: 'English' },
@@ -374,6 +375,24 @@ export const CORE_SETTINGS: SettingDefinition[] = [
   },
 ];
 
+const DESKTOP_ONLY_SETTINGS = new Set([
+  'appearance.framelessWindow',
+  'appearance.customTitleBar',
+  'appearance.titleBarStyle',
+  'updates.checkForUpdates',
+  'updates.autoInstall',
+  'integrations.discord.enabled',
+]);
+
+const platformSettings = () =>
+  isMobilePlatform()
+    ? CORE_SETTINGS.map((setting) =>
+        DESKTOP_ONLY_SETTINGS.has(setting.id)
+          ? { ...setting, hidden: true }
+          : setting,
+      )
+    : CORE_SETTINGS;
+
 export const registerBuiltInCoreSettings = () => {
-  registerCoreSettings(CORE_SETTINGS);
+  registerCoreSettings(platformSettings());
 };

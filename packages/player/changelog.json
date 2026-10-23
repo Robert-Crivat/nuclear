@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-10-23T00:00",
+    "description": "Nuclear now runs on Android. Search, stream from YouTube and other plugins, and keep listening in the background with lock screen and notification controls.",
+    "type": "feature",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Android",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
+    "description": "The themes folder watcher no longer refreshes the theme list in a loop when the folder is only read.",
+    "type": "fix",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-10-22T00:00",
     "description": "Nuclear now verifies the plugins installed from the store to ensure they're safe to install.",
     "type": "improvement",

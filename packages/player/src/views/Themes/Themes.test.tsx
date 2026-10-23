@@ -180,6 +180,22 @@ describe('Themes view', async () => {
       expect(themes.applyAdvancedTheme).toHaveBeenCalledTimes(1);
     });
 
+    it("doesn't refresh the theme list when the directory is only read", async () => {
+      await mountWithActiveAdvancedTheme();
+      vi.mocked(fs.readDir).mockClear();
+
+      vi.useFakeTimers();
+      watchImmediateCb?.({
+        paths: ['/appdata/themes'],
+        type: { access: { kind: 'open', mode: 'any' } },
+        attrs: {},
+      });
+      await vi.advanceTimersByTimeAsync(WATCH_DEBOUNCE_MS);
+      vi.useRealTimers();
+
+      expect(fs.readDir).not.toHaveBeenCalled();
+    });
+
     it("doesn't reload after the watcher is stopped", async () => {
       await mountWithActiveAdvancedTheme();
 

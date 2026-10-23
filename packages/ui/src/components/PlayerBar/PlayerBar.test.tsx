@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import '@nuclearplayer/tailwind-config';
@@ -81,5 +81,25 @@ describe('PlayerBar', () => {
       />,
     );
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('shows only previous, play and next in compact mode', () => {
+    render(
+      <PlayerBar
+        left={<PlayerBar.NowPlaying title="Song Title" artist="Artist Name" />}
+        right={<PlayerBar.Controls isCompact showDiscovery />}
+      />,
+    );
+    expect(screen.getByTestId('player-play-button')).toBeInTheDocument();
+    expect(screen.getByTestId('player-next-button')).toBeInTheDocument();
+    expect(
+      screen.queryByTestId('player-shuffle-button'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('player-repeat-button'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('player-discovery-button'),
+    ).not.toBeInTheDocument();
   });
 });

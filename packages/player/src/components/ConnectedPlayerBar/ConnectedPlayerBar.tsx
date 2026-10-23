@@ -7,15 +7,28 @@ import { ConnectedNowPlaying } from './ConnectedNowPlaying';
 import { ConnectedSeekBar } from './ConnectedSeekBar';
 import { ConnectedVolume } from './ConnectedVolume';
 
-export const ConnectedPlayerBar: FC = () => {
+type ConnectedPlayerBarProps = {
+  isCompact?: boolean;
+};
+
+export const ConnectedPlayerBar: FC<ConnectedPlayerBarProps> = ({
+  isCompact = false,
+}) => {
   return (
     <>
       <ConnectedSeekBar />
-      <PlayerBar
-        left={<ConnectedNowPlaying />}
-        center={<ConnectedControls />}
-        right={<ConnectedVolume />}
-      />
+      {isCompact ? (
+        <PlayerBar
+          left={<ConnectedNowPlaying />}
+          right={<ConnectedControls isCompact />}
+        />
+      ) : (
+        <PlayerBar
+          left={<ConnectedNowPlaying />}
+          center={<ConnectedControls />}
+          right={<ConnectedVolume />}
+        />
+      )}
     </>
   );
 };

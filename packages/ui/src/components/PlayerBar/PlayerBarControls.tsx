@@ -45,6 +45,7 @@ type PlayerBarControlsProps = {
   onRepeatToggle: () => void;
   onDiscoveryToggle?: () => void;
   showDiscovery: boolean;
+  isCompact?: boolean;
   className?: string;
 };
 
@@ -61,22 +62,25 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
   onRepeatToggle,
   onDiscoveryToggle,
   showDiscovery,
+  isCompact = false,
   className = '',
 }) => (
   <div className={cn('flex items-center justify-center gap-2', className)}>
-    <Tooltip
-      content={isShuffleActive ? labels?.shuffleOn : labels?.shuffleOff}
-      side="top"
-    >
-      <Button
-        size="icon"
-        variant={isShuffleActive ? 'default' : 'text'}
-        onClick={onShuffleToggle}
-        data-testid="player-shuffle-button"
+    {!isCompact && (
+      <Tooltip
+        content={isShuffleActive ? labels?.shuffleOn : labels?.shuffleOff}
+        side="top"
       >
-        <Shuffle size={16} />
-      </Button>
-    </Tooltip>
+        <Button
+          size="icon"
+          variant={isShuffleActive ? 'default' : 'text'}
+          onClick={onShuffleToggle}
+          data-testid="player-shuffle-button"
+        >
+          <Shuffle size={16} />
+        </Button>
+      </Tooltip>
+    )}
     <Button size="icon" variant="text" onClick={onPrevious}>
       <SkipBack size={16} />
     </Button>
@@ -95,18 +99,20 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
     >
       <SkipForward size={16} />
     </Button>
-    <Tooltip content={labels?.[REPEAT_LABEL_KEY[repeatMode]]} side="top">
-      <Button
-        size="icon"
-        variant={repeatMode !== 'off' ? 'default' : 'text'}
-        onClick={onRepeatToggle}
-        data-testid="player-repeat-button"
-      >
-        {repeatMode === 'one' && <Repeat1 size={16} />}
-        {repeatMode !== 'one' && <Repeat size={16} />}
-      </Button>
-    </Tooltip>
-    {showDiscovery && (
+    {!isCompact && (
+      <Tooltip content={labels?.[REPEAT_LABEL_KEY[repeatMode]]} side="top">
+        <Button
+          size="icon"
+          variant={repeatMode !== 'off' ? 'default' : 'text'}
+          onClick={onRepeatToggle}
+          data-testid="player-repeat-button"
+        >
+          {repeatMode === 'one' && <Repeat1 size={16} />}
+          {repeatMode !== 'one' && <Repeat size={16} />}
+        </Button>
+      </Tooltip>
+    )}
+    {showDiscovery && !isCompact && (
       <Tooltip
         content={isDiscoveryActive ? labels?.discoveryOn : labels?.discoveryOff}
         side="top"

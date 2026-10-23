@@ -6,6 +6,7 @@ export * from './Card';
 export * from './CardsRow';
 export * from './CopyButton';
 export * from './Dialog';
+export * from './Drawer';
 export * from './FavoriteButton';
 export * from './CardGrid';
 export * from './EmptyState';

@@ -24,3 +24,14 @@ pub fn local_lan_ip() -> Option<std::net::IpAddr> {
     socket.connect("192.0.2.1:80").ok()?;
     socket.local_addr().ok().map(|addr| addr.ip())
 }
+
+pub fn http_client_builder() -> reqwest::ClientBuilder {
+    let builder = reqwest::Client::builder();
+    #[cfg(target_os = "android")]
+    let builder = builder.tls_certs_only(
+        webpki_root_certs::TLS_SERVER_ROOT_CERTS
+            .iter()
+            .filter_map(|cert| reqwest::Certificate::from_der(cert).ok()),
+    );
+    builder
+}

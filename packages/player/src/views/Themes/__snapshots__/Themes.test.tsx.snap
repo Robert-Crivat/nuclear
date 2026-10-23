@@ -23,7 +23,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
   >
     <div
       animate="[object Object]"
-      class="border-border surface-background shadow-shadow rounded-md border-(length:--border-width) backdrop-blur-xl narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0"
+      class="border-border surface-background shadow-shadow rounded-md border-(length:--border-width) backdrop-blur-xl narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0 max-sm:flex-col"
       exit="[object Object]"
       initial="[object Object]"
       transition="[object Object]"
@@ -63,7 +63,7 @@ exports[`Themes view > (Snapshot) renders the themes view 1`] = `
           </svg>
         </button>
         <nav
-          class="border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width)"
+          class="border-border flex w-56 shrink-0 flex-col border-r-(length:--border-width) max-sm:max-h-[30%] max-sm:w-full max-sm:border-r-0 max-sm:border-b-(length:--border-width)"
         >
           <div
             class="relative h-full w-full"

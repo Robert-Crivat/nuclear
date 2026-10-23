@@ -36,7 +36,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({
   <DialogRoot
     isOpen={isOpen}
     onClose={onClose}
-    className="narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0"
+    className="narrow:inset-0 narrow:rounded-none narrow:border-0 fixed inset-8 flex w-auto max-w-none p-0 max-sm:flex-col"
   >
     <SettingsPanelNavigation sections={sections} footer={navigationFooter} />
     <SettingsPanelContent>{children}</SettingsPanelContent>

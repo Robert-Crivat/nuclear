@@ -24,7 +24,7 @@ const AddToQueueButton: FC<AddToQueueButtonProps> = ({ label, onClick }) => (
     data-testid="add-to-queue-button"
     size="icon-sm"
     variant="text"
-    className="opacity-0 transition-none group-hover:opacity-100"
+    className="opacity-0 transition-none group-hover:opacity-100 pointer-coarse:opacity-100"
     onClick={(e) => {
       e.stopPropagation();
       onClick();
@@ -48,7 +48,7 @@ const ContextMenuButton = forwardRef<HTMLElement, ContextMenuButtonProps>(
         data-testid="track-context-menu-button"
         size="icon-sm"
         variant="text"
-        className="opacity-0 transition-none group-hover:opacity-100"
+        className="opacity-0 transition-none group-hover:opacity-100 pointer-coarse:opacity-100"
         onClick={(e) => e.stopPropagation()}
         aria-label={label}
       >
@@ -76,13 +76,16 @@ export const TitleCell = <T extends Track>({
     <td className="truncate px-2">
       <div className="flex items-center justify-between gap-2">
         <button
-          className="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+          className="min-w-0 flex-1 cursor-pointer text-left"
           onClick={(e) => {
             e.stopPropagation();
             actions.onPlayNow?.(track);
           }}
         >
-          {getValue()}
+          <span className="block truncate hover:underline">{getValue()}</span>
+          <span className="block truncate text-xs opacity-70 sm:hidden">
+            {track.artists[0]?.name}
+          </span>
         </button>
         {showControls && hasActions && (
           <div className="flex items-center gap-1">

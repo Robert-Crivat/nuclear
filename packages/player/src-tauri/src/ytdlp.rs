@@ -1,8 +1,5 @@
 use log::{debug, error};
-use std::process::{Command, Stdio};
 use tauri::{command, AppHandle};
-
-use crate::ytdlp_setup::ensure_binary;
 
 #[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpStreamInfo {
@@ -78,12 +75,33 @@ fn build_args<'a>(options: &[&'a str], target: &'a str) -> Vec<&'a str> {
     args
 }
 
+#[cfg(target_os = "android")]
 async fn run_ytdlp(
     app_handle: &AppHandle,
     options: &[&str],
     target: &str,
 ) -> Result<String, String> {
-    let program = ensure_binary(app_handle).await?;
+    let args = build_args(options, target)
+        .into_iter()
+        .map(str::to_string)
+        .collect();
+    crate::android::ytdlp_execute(app_handle, args)
+        .await
+        .map_err(|error| {
+            error!("[yt-dlp] Command failed: {}", error);
+            format!("yt-dlp failed: {}", error)
+        })
+}
+
+#[cfg(not(target_os = "android"))]
+async fn run_ytdlp(
+    app_handle: &AppHandle,
+    options: &[&str],
+    target: &str,
+) -> Result<String, String> {
+    use std::process::{Command, Stdio};
+
+    let program = crate::ytdlp_setup::ensure_binary(app_handle).await?;
     let mut cmd = Command::new(&program);
     cmd.args(build_args(options, target))
         .stdout(Stdio::piped())

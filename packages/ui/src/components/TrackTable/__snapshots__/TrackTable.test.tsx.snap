@@ -154,7 +154,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -184,7 +184,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -226,7 +226,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -241,9 +241,18 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 1
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 1
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -257,7 +266,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -296,7 +305,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -311,9 +320,18 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 2
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 2
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -327,7 +345,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -366,7 +384,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -381,9 +399,18 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 3
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 3
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -397,7 +424,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -568,7 +595,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -598,7 +625,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -640,7 +667,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -655,9 +682,18 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 1
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 1
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -671,7 +707,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -710,7 +746,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -725,9 +761,18 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 2
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 2
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -741,7 +786,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -780,7 +825,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -795,9 +840,18 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 3
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 3
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -811,7 +865,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -850,7 +904,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -865,9 +919,18 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 4
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 4
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -881,7 +944,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -920,7 +983,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -935,9 +998,18 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 5
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 5
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -951,7 +1023,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1139,7 +1211,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -1169,7 +1241,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -1211,7 +1283,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1226,9 +1298,18 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 1
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 1
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -1242,7 +1323,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1281,7 +1362,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1296,9 +1377,18 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 2
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 2
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -1312,7 +1402,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1351,7 +1441,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1366,9 +1456,18 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 3
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 3
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -1382,7 +1481,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1421,7 +1520,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1436,9 +1535,18 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 4
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 4
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -1452,7 +1560,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1491,7 +1599,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1506,9 +1614,18 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 5
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 5
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -1522,7 +1639,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -1696,7 +1813,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </span>
                 </th>
                 <th
-                  class="px-2 text-left cursor-pointer"
+                  class="px-2 text-left cursor-pointer max-sm:hidden"
                   role="columnheader"
                 >
                   <span
@@ -1726,7 +1843,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </span>
                 </th>
                 <th
-                  class="px-2 text-left cursor-pointer"
+                  class="px-2 text-left cursor-pointer max-sm:hidden"
                   role="columnheader"
                 >
                   <span
@@ -1768,7 +1885,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -1783,9 +1900,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 1
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 1
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -1799,7 +1925,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -1838,7 +1964,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -1853,9 +1979,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 2
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 2
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -1869,7 +2004,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -1908,7 +2043,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -1923,9 +2058,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 3
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 3
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -1939,7 +2083,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -1978,7 +2122,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -1993,9 +2137,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 4
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 4
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2009,7 +2162,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2048,7 +2201,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2063,9 +2216,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 5
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 5
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2079,7 +2241,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2118,7 +2280,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2133,9 +2295,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 6
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 6
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2149,7 +2320,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2188,7 +2359,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2203,9 +2374,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 7
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 7
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2219,7 +2399,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2258,7 +2438,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2273,9 +2453,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 8
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 8
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2289,7 +2478,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2328,7 +2517,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2343,9 +2532,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 9
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 9
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2359,7 +2557,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2398,7 +2596,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2413,9 +2611,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 10
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 10
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2429,7 +2636,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2468,7 +2675,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2483,9 +2690,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 11
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 11
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2499,7 +2715,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2538,7 +2754,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2553,9 +2769,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 12
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 12
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2569,7 +2794,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2608,7 +2833,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2623,9 +2848,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 13
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 13
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2639,7 +2873,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2678,7 +2912,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2693,9 +2927,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 14
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 14
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2709,7 +2952,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2748,7 +2991,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2763,9 +3006,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 15
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 15
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2779,7 +3031,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2818,7 +3070,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2833,9 +3085,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 16
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 16
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2849,7 +3110,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2888,7 +3149,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2903,9 +3164,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 17
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 17
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2919,7 +3189,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2958,7 +3228,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -2973,9 +3243,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 18
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 18
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -2989,7 +3268,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -3028,7 +3307,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -3043,9 +3322,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 19
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 19
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -3059,7 +3347,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -3098,7 +3386,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -3113,9 +3401,18 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                     class="flex items-center justify-between gap-2"
                   >
                     <button
-                      class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                      class="min-w-0 flex-1 cursor-pointer text-left"
                     >
-                      Track 20
+                      <span
+                        class="block truncate hover:underline"
+                      >
+                        Track 20
+                      </span>
+                      <span
+                        class="block truncate text-xs opacity-70 sm:hidden"
+                      >
+                        Frank Zappa
+                      </span>
                     </button>
                   </div>
                 </td>
@@ -3129,7 +3426,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2"
+                  class="cursor-default truncate px-2 max-sm:hidden"
                 >
                   <div
                     class="truncate"
@@ -3364,7 +3661,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -3394,7 +3691,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer"
+                class="px-2 text-left cursor-pointer max-sm:hidden"
                 role="columnheader"
               >
                 <span
@@ -3436,7 +3733,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -3451,9 +3748,18 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 1
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 1
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -3467,7 +3773,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -3506,7 +3812,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -3521,9 +3827,18 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 2
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 2
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -3537,7 +3852,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -3576,7 +3891,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"
@@ -3591,9 +3906,18 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                   class="flex items-center justify-between gap-2"
                 >
                   <button
-                    class="min-w-0 flex-1 cursor-pointer truncate text-left hover:underline"
+                    class="min-w-0 flex-1 cursor-pointer text-left"
                   >
-                    Track 3
+                    <span
+                      class="block truncate hover:underline"
+                    >
+                      Track 3
+                    </span>
+                    <span
+                      class="block truncate text-xs opacity-70 sm:hidden"
+                    >
+                      Frank Zappa
+                    </span>
                   </button>
                 </div>
               </td>
@@ -3607,7 +3931,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2"
+                class="cursor-default truncate px-2 max-sm:hidden"
               >
                 <div
                   class="truncate"

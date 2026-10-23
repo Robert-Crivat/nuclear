@@ -179,8 +179,87 @@ jobs:
           if-no-files-found: error
           path: ${{ steps.snapcraft.outputs.snap }}
 
+  android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Extract version from tag
+        run: echo "VERSION=${GITHUB_REF_NAME#player@}" >> "$GITHUB_ENV"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK
+        run: sdkmanager "ndk;27.1.12297006"
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android,armv7-linux-androideabi,x86_64-linux-android
+
+      - name: Cache cargo dependencies
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            packages/player/src-tauri/target/
+          key: android-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure signing
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: |
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/nuclear.jks"
+          {
+            echo "storeFile=$RUNNER_TEMP/nuclear.jks"
+            echo "password=$ANDROID_KEYSTORE_PASSWORD"
+            echo "keyAlias=$ANDROID_KEY_ALIAS"
+          } > packages/player/src-tauri/gen/android/keystore.properties
+
+      - name: Build APK
+        env:
+          NDK_HOME: ${{ env.ANDROID_HOME }}/ndk/27.1.12297006
+        run: pnpm --filter @nuclearplayer/player tauri android build --apk --target aarch64 --target armv7 --target x86_64
+
+      - name: Rename APK
+        run: |
+          mkdir -p android
+          cp packages/player/src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk "android/Nuclear_${VERSION}_android.apk"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: android
+          if-no-files-found: error
+          path: android/Nuclear_${{ env.VERSION }}_android.apk
+
   publish:
-    needs: [build, flatpak, snap]
+    needs: [build, flatpak, snap, android]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

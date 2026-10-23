@@ -5,6 +5,7 @@ import { create } from 'zustand';
 import { Logger } from '../services/logger';
 import { errorMessage } from '../utils/errorMessage';
 import { reportError } from '../utils/logging';
+import { isMobilePlatform } from '../utils/platform';
 import { getSetting } from './settingsStore';
 
 type UpdaterState = {
@@ -35,7 +36,7 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
 
   checkForUpdate: async () => {
     const checkEnabled = getSetting('core.updates.checkForUpdates');
-    if (checkEnabled === false) {
+    if (checkEnabled === false || isMobilePlatform()) {
       return;
     }
 

@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Drawer > (Snapshot) renders an open drawer 1`] = `
+<div
+  aria-modal="true"
+  class="surface-background border-border absolute inset-y-0 flex w-[min(20rem,85vw)] flex-col overflow-hidden backdrop-blur-xl transition duration-200 ease-out right-0 border-l-(length:--border-width) data-closed:translate-x-full"
+  data-testid="drawer-panel"
+  role="dialog"
+>
+  <p>
+    Queue
+  </p>
+</div>
+`;

@@ -16,6 +16,8 @@ import {
 } from './services/languageService';
 import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
+import { initMobileBackHandler } from './services/mobileBackHandler';
+import { initMobileMediaSession } from './services/mobileMediaSession';
 import { initMpdHandler } from './services/mpd';
 import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
@@ -66,6 +68,8 @@ export const initPlayerApp = async (
     .then(() => initDiscoveryService())
     .then(() => initRemoteControl())
     .then(() => initDiscordHandler())
+    .then(() => initMobileMediaSession())
+    .then(() => initMobileBackHandler())
     .then(() => initPlaybackEventBridge())
     .then(() => initHistoryService())
     .then(() => initLanguage())
