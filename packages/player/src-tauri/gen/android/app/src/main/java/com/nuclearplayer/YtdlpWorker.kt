@@ -45,13 +45,6 @@ object YtdlpWorker {
   }
 
   @Synchronized
-  fun warmUp(context: Context) {
-    if (process?.isAlive != true) {
-      start(context)
-    }
-  }
-
-  @Synchronized
   fun stop() {
     process?.destroy()
     process = null

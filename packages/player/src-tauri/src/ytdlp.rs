@@ -1,3 +1,5 @@
+#[cfg(target_os = "android")]
+use log::warn;
 use log::{debug, error};
 use tauri::{command, AppHandle};
 
@@ -161,6 +163,13 @@ pub async fn ytdlp_search(
     let limit = max_results.unwrap_or(10);
     debug!("[yt-dlp] Searching: {} (limit: {})", query, limit);
 
+    #[cfg(target_os = "android")]
+    match crate::youtube_innertube::search(&query, limit as usize).await {
+        Ok(results) if !results.is_empty() => return Ok(results),
+        Ok(_) => warn!("[innertube] No results for {}, using yt-dlp", query),
+        Err(error) => warn!("[innertube] Search failed, using yt-dlp: {}", error),
+    }
+
     let search_url = format!("ytsearch{}:{}", limit, query);
     let stdout = run_ytdlp(
         &app_handle,
@@ -207,6 +216,14 @@ pub async fn ytdlp_get_stream(
     };
 
     debug!("[yt-dlp] Getting stream for: {}", resolved_url);
+
+    #[cfg(target_os = "android")]
+    if let Some(video_id) = crate::youtube_innertube::video_id_from_url(&resolved_url) {
+        match crate::youtube_innertube::stream(&video_id).await {
+            Ok(info) => return Ok(info),
+            Err(error) => warn!("[innertube] Stream failed, using yt-dlp: {}", error),
+        }
+    }
 
     let stdout = run_ytdlp(
         &app_handle,

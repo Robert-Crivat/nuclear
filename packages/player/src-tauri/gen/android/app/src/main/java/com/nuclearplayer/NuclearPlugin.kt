@@ -66,13 +66,6 @@ class NuclearPlugin(private val activity: Activity) : Plugin(activity) {
   private val mainHandler = Handler(Looper.getMainLooper())
 
   override fun load(webView: WebView) {
-    executor.execute {
-      try {
-        YtdlpWorker.warmUp(activity.applicationContext)
-      } catch (error: Exception) {
-        Log.w("NuclearPlugin", "Could not start the yt-dlp worker", error)
-      }
-    }
     MediaPlaybackService.onAction = { action, positionMs, mediaId ->
       val payload = JSObject().put("action", action)
       if (positionMs != null) {

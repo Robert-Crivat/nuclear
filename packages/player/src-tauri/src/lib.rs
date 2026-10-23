@@ -15,6 +15,9 @@ pub mod pagination;
 pub mod profile;
 mod setup;
 pub mod stream_server;
+#[cfg(any(target_os = "android", test))]
+#[cfg_attr(not(target_os = "android"), allow(dead_code))]
+mod youtube_innertube;
 pub mod ytdlp;
 #[cfg_attr(target_os = "android", path = "ytdlp_setup_android.rs")]
 pub mod ytdlp_setup;

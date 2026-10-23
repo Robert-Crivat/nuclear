@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-10-23T00:00",
-    "description": "YouTube tracks start playing sooner: Nuclear no longer downloads a stream manifest it doesn't use, and on Android yt-dlp stays loaded between tracks.",
+    "description": "YouTube tracks start playing sooner: Nuclear no longer downloads a stream manifest it doesn't use, and on Android it asks YouTube for search results and streams directly, with yt-dlp as a fallback.",
     "type": "improvement",
     "contributors": ["Robert-Crivat"],
     "tags": [
