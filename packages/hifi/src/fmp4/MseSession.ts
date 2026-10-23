@@ -33,6 +33,7 @@ export class MseSession {
   private readonly gapJump = new GapJumpController();
   private isFetching = false;
   private seekGeneration = 0;
+  private finalSegmentAppended = false;
 
   constructor(parts: MseSessionParts) {
     this.attachment = parts.attachment;
@@ -108,6 +109,7 @@ export class MseSession {
         this.sourceBuffer.remove(0, Infinity),
       );
       this.timeline.clearFetched();
+      this.finalSegmentAppended = false;
 
       if (this.signal.aborted) {
         return;
@@ -173,8 +175,11 @@ export class MseSession {
       return;
     }
 
-    if (timeline.isFinal(segmentIndex) && !this.sourceBuffer.updating) {
-      this.attachment.endStream();
+    if (timeline.isFinal(segmentIndex)) {
+      this.finalSegmentAppended = true;
+    }
+    if (this.finalSegmentAppended) {
+      await this.bufferQueue.enqueue(() => this.attachment.endStream());
     }
   }
 

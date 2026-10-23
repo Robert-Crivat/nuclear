@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-10-23T00:00",
+    "description": "After seeking close to the end of a track, Nuclear now moves on to the next track instead of stopping at the end.",
+    "type": "fix",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
     "description": "YouTube tracks start playing sooner: Nuclear no longer downloads a stream manifest it doesn't use, and on Android it asks YouTube for search results and streams directly, with yt-dlp as a fallback.",
     "type": "improvement",
     "contributors": ["Robert-Crivat"],
