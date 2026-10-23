@@ -22,34 +22,45 @@ export const ViewShell: FC<ViewShellProps> = ({
   subtitle,
   'data-testid': dataTestId,
   classes,
-}) => (
-  <div
-    className={cn(
-      'surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6 max-sm:px-4 max-sm:pt-4',
-      classes?.root,
-    )}
-    data-testid={dataTestId}
-  >
-    {title && (
-      <h1
-        className="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold max-sm:mb-4 max-sm:text-2xl"
-        data-testid="title"
-      >
-        {title}
-      </h1>
-    )}
-    {subtitle && (
-      <h2 className="mb-4 flex w-full flex-0 flex-row text-center text-xl font-semibold">
-        {subtitle}
-      </h2>
-    )}
-    <ScrollableArea
-      className={cn(
-        'flex min-h-0 w-full flex-1 flex-col',
-        classes?.scrollableArea,
+}) => {
+  const isTouchScreen =
+    window.matchMedia?.('(pointer: coarse)')?.matches === true;
+  const header = (
+    <>
+      {title && (
+        <h1
+          className="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold max-sm:mb-4 max-sm:text-2xl"
+          data-testid="title"
+        >
+          {title}
+        </h1>
       )}
+      {subtitle && (
+        <h2 className="mb-4 flex w-full flex-0 flex-row text-center text-xl font-semibold">
+          {subtitle}
+        </h2>
+      )}
+    </>
+  );
+
+  return (
+    <div
+      className={cn(
+        'surface-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6 max-sm:px-4 max-sm:pt-4',
+        classes?.root,
+      )}
+      data-testid={dataTestId}
     >
-      {children}
-    </ScrollableArea>
-  </div>
-);
+      {!isTouchScreen && header}
+      <ScrollableArea
+        className={cn(
+          'flex min-h-0 w-full flex-1 flex-col',
+          classes?.scrollableArea,
+        )}
+      >
+        {isTouchScreen && header}
+        {children}
+      </ScrollableArea>
+    </div>
+  );
+};

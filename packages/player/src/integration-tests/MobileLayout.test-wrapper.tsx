@@ -51,6 +51,10 @@ export const MobileLayoutWrapper = {
     return screen.queryByTestId('home-playlists');
   },
 
+  get dashboardEmptyState() {
+    return screen.queryByTestId('dashboard-empty-state');
+  },
+
   library: {
     async open(label: string) {
       const view = await screen.findByTestId('library-view');

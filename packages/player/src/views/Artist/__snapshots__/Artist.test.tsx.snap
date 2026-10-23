@@ -965,7 +965,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                     </span>
                                   </th>
                                   <th
-                                    class="px-2 text-left cursor-pointer max-sm:hidden"
+                                    class="px-2 text-left cursor-pointer"
                                     role="columnheader"
                                   >
                                     <span
@@ -1040,7 +1040,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                     </div>
                                   </td>
                                   <td
-                                    class="cursor-default truncate px-2 max-sm:hidden"
+                                    class="cursor-default truncate px-2"
                                   >
                                     <div
                                       class="truncate"
@@ -2901,7 +2901,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                     </span>
                                   </th>
                                   <th
-                                    class="px-2 text-left cursor-pointer max-sm:hidden"
+                                    class="px-2 text-left cursor-pointer"
                                     role="columnheader"
                                   >
                                     <span
@@ -2976,7 +2976,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                     </div>
                                   </td>
                                   <td
-                                    class="cursor-default truncate px-2 max-sm:hidden"
+                                    class="cursor-default truncate px-2"
                                   >
                                     <div
                                       class="truncate"

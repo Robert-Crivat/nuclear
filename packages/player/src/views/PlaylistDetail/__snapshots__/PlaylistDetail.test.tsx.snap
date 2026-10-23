@@ -324,7 +324,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </span>
                         </th>
                         <th
-                          class="px-2 text-left cursor-pointer max-sm:hidden"
+                          class="px-2 text-left cursor-pointer"
                           role="columnheader"
                         >
                           <span
@@ -344,7 +344,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </span>
                         </th>
                         <th
-                          class="px-2 text-left cursor-pointer max-sm:hidden"
+                          class="px-2 text-left cursor-pointer"
                           role="columnheader"
                         >
                           <span
@@ -446,7 +446,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </div>
                         </td>
                         <td
-                          class="cursor-default truncate px-2 max-sm:hidden"
+                          class="cursor-default truncate px-2"
                         >
                           <div
                             class="truncate"
@@ -550,7 +550,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </div>
                         </td>
                         <td
-                          class="cursor-default truncate px-2 max-sm:hidden"
+                          class="cursor-default truncate px-2"
                         >
                           <div
                             class="truncate"
@@ -651,7 +651,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </div>
                         </td>
                         <td
-                          class="cursor-default truncate px-2 max-sm:hidden"
+                          class="cursor-default truncate px-2"
                         >
                           <div
                             class="truncate"
@@ -755,7 +755,7 @@ exports[`PlaylistDetail view > (Snapshot) renders playlist detail with tracks 1`
                           </div>
                         </td>
                         <td
-                          class="cursor-default truncate px-2 max-sm:hidden"
+                          class="cursor-default truncate px-2"
                         >
                           <div
                             class="truncate"

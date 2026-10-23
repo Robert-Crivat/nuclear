@@ -96,6 +96,8 @@ const DesktopRoot: FC = () => {
   );
 };
 
+const MOBILE_TOAST_OFFSET = { bottom: 136 };
+
 const MobileRoot: FC = () => {
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
   const pathname = useRouterState({
@@ -112,7 +114,7 @@ const MobileRoot: FC = () => {
 
   return (
     <PlayerShell>
-      <div data-system-bar="top" className="surface-topbar">
+      <div className="surface-topbar">
         <MobileHeader />
       </div>
       {!isStartingUp && <StreamResolver />}
@@ -121,10 +123,7 @@ const MobileRoot: FC = () => {
           <RouteTransition />
         </PlayerWorkspace.Main>
       </SoundProvider>
-      <footer
-        data-system-bar="bottom"
-        className="surface-bottombar border-border flex flex-col border-t-(length:--border-width)"
-      >
+      <footer className="surface-bottombar border-border flex flex-col border-t-(length:--border-width)">
         <div className="px-2 pt-2 empty:hidden">
           <ConnectedMiniPlayer onOpen={() => setNowPlayingOpen(true)} />
         </div>
@@ -140,7 +139,11 @@ const MobileRoot: FC = () => {
         isOpen={isQueueOpen}
         onClose={() => setQueueOpen(false)}
       />
-      <Toaster position="top-center" />
+      <Toaster
+        position="bottom-center"
+        offset={MOBILE_TOAST_OFFSET}
+        mobileOffset={MOBILE_TOAST_OFFSET}
+      />
       <ConnectedSettingsModal />
     </PlayerShell>
   );

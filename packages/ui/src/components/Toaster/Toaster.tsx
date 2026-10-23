@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ComponentProps, FC } from 'react';
 import { Toaster as SonnerToaster } from 'sonner';
 
 type ToasterProps = {
@@ -12,6 +12,8 @@ type ToasterProps = {
   richColors?: boolean;
   expand?: boolean;
   closeButton?: boolean;
+  offset?: ComponentProps<typeof SonnerToaster>['offset'];
+  mobileOffset?: ComponentProps<typeof SonnerToaster>['mobileOffset'];
 };
 
 const ToasterImpl: FC<ToasterProps> = ({
@@ -19,6 +21,8 @@ const ToasterImpl: FC<ToasterProps> = ({
   richColors = false,
   expand = false,
   closeButton = false,
+  offset,
+  mobileOffset,
 }) => {
   return (
     <SonnerToaster
@@ -27,6 +31,8 @@ const ToasterImpl: FC<ToasterProps> = ({
       richColors={richColors}
       expand={expand}
       closeButton={closeButton}
+      offset={offset}
+      mobileOffset={mobileOffset}
       toastOptions={{
         unstyled: true,
         classNames: {

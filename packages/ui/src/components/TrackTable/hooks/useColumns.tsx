@@ -15,8 +15,6 @@ import { IconHeader } from '../Headers/IconHeader';
 import { TextHeader } from '../Headers/TextHeader';
 import { TrackTableProps } from '../types';
 
-const NARROW_HIDDEN = 'max-sm:hidden';
-
 export function useColumns<T extends Track = Track>(
   props: Pick<TrackTableProps<T>, 'display' | 'labels' | 'actions'>,
 ): ColumnDef<T>[] {
@@ -58,11 +56,9 @@ export function useColumns<T extends Track = Track>(
         id: 'artist',
         enableSorting: true,
         header: (context) => (
-          <TextHeader context={context} className={NARROW_HIDDEN}>
-            {labels.headers.artist}
-          </TextHeader>
+          <TextHeader context={context}>{labels.headers.artist}</TextHeader>
         ),
-        cell: (context) => <TextCell {...context} className={NARROW_HIDDEN} />,
+        cell: TextCell,
       }),
       columnHelper.accessor((track) => track.title, {
         id: 'title',
@@ -86,13 +82,9 @@ export function useColumns<T extends Track = Track>(
           id: 'duration',
           enableSorting: true,
           header: (context) => (
-            <TextHeader context={context} className={NARROW_HIDDEN}>
-              {labels.headers.duration}
-            </TextHeader>
+            <TextHeader context={context}>{labels.headers.duration}</TextHeader>
           ),
-          cell: (context) => (
-            <TextCell {...context} className={NARROW_HIDDEN} />
-          ),
+          cell: TextCell,
         }),
       showDelete &&
         columnHelper.display({

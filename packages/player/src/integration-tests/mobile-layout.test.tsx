@@ -3,6 +3,7 @@ import { screen, waitFor, within } from '@testing-library/react';
 import { usePlaylistStore } from '../stores/playlistStore';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
+import { useStartupStore } from '../stores/startupStore';
 import { createQueueItem } from '../test/fixtures/queue';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { MobileLayoutWrapper } from './MobileLayout.test-wrapper';
@@ -21,6 +22,7 @@ beforeEach(() => {
   resetInMemoryTauriStore();
   useSettingsStore.setState({ definitions: {}, values: {}, loaded: false });
   useQueueStore.setState({ items: [], currentIndex: 0 });
+  usePlaylistStore.setState({ index: [], playlists: new Map() });
 });
 
 describe('Mobile layout', () => {
@@ -39,6 +41,16 @@ describe('Mobile layout', () => {
 
     const row = await screen.findByTestId('home-playlists');
     expect(within(row).getByText('Road trip')).toBeInTheDocument();
+    expect(MobileLayoutWrapper.dashboardEmptyState).not.toBeInTheDocument();
+  });
+
+  it('suggests plugins when the home tab has nothing to show', async () => {
+    useStartupStore.setState({ isStartingUp: false });
+    await MobileLayoutWrapper.mount('/home');
+
+    expect(
+      await screen.findByTestId('dashboard-empty-state'),
+    ).toBeInTheDocument();
   });
 
   it('reaches the playlists from the library tab', async () => {

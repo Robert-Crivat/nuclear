@@ -1,4 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
+import isEmpty from 'lodash-es/isEmpty';
 import uniqBy from 'lodash-es/uniqBy';
 import { FC } from 'react';
 
@@ -121,7 +122,14 @@ export const Home: FC = () => {
             labels={rowLabels(tDashboard('filter-artists'))}
           />
         )}
-        <DashboardWidgets />
+        <DashboardWidgets
+          showEmptyState={
+            isEmpty(recentItems) &&
+            isEmpty(playlistItems) &&
+            isEmpty(albumItems) &&
+            isEmpty(artistItems)
+          }
+        />
       </div>
     </ViewShell>
   );

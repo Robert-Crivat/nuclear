@@ -14,13 +14,14 @@ import { DASHBOARD_WIDGETS, DashboardWidgetEntry } from './dashboardWidgets';
 const DashboardContent: FC<{
   isStartingUp: boolean;
   activeWidgets: DashboardWidgetEntry[];
-}> = ({ isStartingUp, activeWidgets }) => {
+  showEmptyState: boolean;
+}> = ({ isStartingUp, activeWidgets, showEmptyState }) => {
   if (isStartingUp) {
     return <DashboardStartupSkeleton />;
   }
 
   if (isEmpty(activeWidgets)) {
-    return <DashboardEmptyState />;
+    return showEmptyState ? <DashboardEmptyState /> : null;
   }
 
   return activeWidgets.map(({ capability, component: Widget }) => (
@@ -28,7 +29,9 @@ const DashboardContent: FC<{
   ));
 };
 
-export const DashboardWidgets: FC = () => {
+export const DashboardWidgets: FC<{ showEmptyState?: boolean }> = ({
+  showEmptyState = true,
+}) => {
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
   const providers = useProviders('dashboard') as DashboardProvider[];
 
@@ -46,6 +49,7 @@ export const DashboardWidgets: FC = () => {
     <DashboardContent
       isStartingUp={isStartingUp}
       activeWidgets={activeWidgets}
+      showEmptyState={showEmptyState}
     />
   );
 };

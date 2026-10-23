@@ -154,7 +154,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -184,7 +184,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -226,7 +226,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -266,7 +266,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -305,7 +305,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -345,7 +345,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -384,7 +384,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -424,7 +424,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -595,7 +595,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -625,7 +625,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -667,7 +667,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -707,7 +707,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -746,7 +746,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -786,7 +786,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -825,7 +825,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -865,7 +865,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -904,7 +904,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -944,7 +944,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -983,7 +983,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1023,7 +1023,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1211,7 +1211,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -1241,7 +1241,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -1283,7 +1283,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1323,7 +1323,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1362,7 +1362,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1402,7 +1402,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1441,7 +1441,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1481,7 +1481,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1520,7 +1520,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1560,7 +1560,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1599,7 +1599,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1639,7 +1639,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -1813,7 +1813,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </span>
                 </th>
                 <th
-                  class="px-2 text-left cursor-pointer max-sm:hidden"
+                  class="px-2 text-left cursor-pointer"
                   role="columnheader"
                 >
                   <span
@@ -1843,7 +1843,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </span>
                 </th>
                 <th
-                  class="px-2 text-left cursor-pointer max-sm:hidden"
+                  class="px-2 text-left cursor-pointer"
                   role="columnheader"
                 >
                   <span
@@ -1885,7 +1885,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -1925,7 +1925,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -1964,7 +1964,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2004,7 +2004,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2043,7 +2043,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2083,7 +2083,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2122,7 +2122,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2162,7 +2162,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2201,7 +2201,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2241,7 +2241,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2280,7 +2280,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2320,7 +2320,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2359,7 +2359,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2399,7 +2399,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2438,7 +2438,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2478,7 +2478,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2517,7 +2517,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2557,7 +2557,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2596,7 +2596,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2636,7 +2636,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2675,7 +2675,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2715,7 +2715,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2754,7 +2754,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2794,7 +2794,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2833,7 +2833,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2873,7 +2873,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2912,7 +2912,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2952,7 +2952,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -2991,7 +2991,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3031,7 +3031,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3070,7 +3070,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3110,7 +3110,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3149,7 +3149,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3189,7 +3189,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3228,7 +3228,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3268,7 +3268,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3307,7 +3307,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3347,7 +3347,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3386,7 +3386,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3426,7 +3426,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                   </div>
                 </td>
                 <td
-                  class="cursor-default truncate px-2 max-sm:hidden"
+                  class="cursor-default truncate px-2"
                 >
                   <div
                     class="truncate"
@@ -3661,7 +3661,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -3691,7 +3691,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </span>
               </th>
               <th
-                class="px-2 text-left cursor-pointer max-sm:hidden"
+                class="px-2 text-left cursor-pointer"
                 role="columnheader"
               >
                 <span
@@ -3733,7 +3733,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -3773,7 +3773,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -3812,7 +3812,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -3852,7 +3852,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -3891,7 +3891,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"
@@ -3931,7 +3931,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
                 </div>
               </td>
               <td
-                class="cursor-default truncate px-2 max-sm:hidden"
+                class="cursor-default truncate px-2"
               >
                 <div
                   class="truncate"

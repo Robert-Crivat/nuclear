@@ -16,6 +16,7 @@ import { ScrollableArea } from '../ScrollableArea';
 import { defaultDisplay, defaultFeatures } from './defaults';
 import { useColumns } from './hooks/useColumns';
 import { useGlobalFilter } from './hooks/useGlobalFilter';
+import { useIsNarrowScreen } from './hooks/useIsNarrowScreen';
 import { useReorder } from './hooks/useReorder';
 import { useSorting } from './hooks/useSorting';
 import { useVirtualRows } from './hooks/useVirtualRows';
@@ -29,6 +30,8 @@ import { DEFAULT_OVERSCAN, DEFAULT_ROW_HEIGHT } from './utils/constants';
 import { VirtualizedBody } from './VirtualizedBody';
 
 const defaultGetItemId = <T extends Track>(track: T) => track.source.id;
+
+const NARROW_SCREEN_HIDDEN_COLUMNS = { artist: false, duration: false };
 
 function TrackTableBase<T extends Track = Track>({
   tracks,
@@ -70,10 +73,16 @@ function TrackTableBase<T extends Track = Track>({
     actions,
   });
 
+  const isNarrowScreen = useIsNarrowScreen();
+
   const table = useReactTable({
     columns,
     data: tracks,
-    state: { sorting, globalFilter },
+    state: {
+      sorting,
+      globalFilter,
+      columnVisibility: isNarrowScreen ? NARROW_SCREEN_HIDDEN_COLUMNS : {},
+    },
     enableSortingRemoval: true,
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
