@@ -1,9 +1,11 @@
 import { screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { usePlaylistStore } from '../stores/playlistStore';
 import { useQueueStore } from '../stores/queueStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useStartupStore } from '../stores/startupStore';
+import { PlaylistBuilder } from '../test/builders/PlaylistBuilder';
 import { createQueueItem } from '../test/fixtures/queue';
 import { resetInMemoryTauriStore } from '../test/utils/inMemoryTauriStore';
 import { MobileLayoutWrapper } from './MobileLayout.test-wrapper';
@@ -93,6 +95,30 @@ describe('Mobile layout', () => {
     await MobileLayoutWrapper.tabs.open('search');
 
     await waitFor(() => expect(MobileLayoutWrapper.href).toBe('/search?q='));
+  });
+
+  it('queues the whole playlist when tapping one of its tracks', async () => {
+    const playlist = new PlaylistBuilder()
+      .withId('road-trip')
+      .withTrackNames(['First song', 'Second song', 'Third song']);
+    usePlaylistStore.setState({
+      index: [playlist.buildIndexEntry()],
+      playlists: new Map([['road-trip', playlist.build()]]),
+      loaded: true,
+    });
+    await MobileLayoutWrapper.mount('/playlists/road-trip');
+
+    await userEvent.click(await screen.findByText('Second song'));
+
+    await waitFor(() => {
+      const { items, currentIndex } = useQueueStore.getState();
+      expect(items.map((item) => item.track.title)).toEqual([
+        'First song',
+        'Second song',
+        'Third song',
+      ]);
+      expect(currentIndex).toBe(1);
+    });
   });
 
   it('hides the mini player when nothing is queued', async () => {
