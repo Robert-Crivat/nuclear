@@ -18,6 +18,7 @@ export const useSaveLocally = (playlist: Playlist | null) => {
     navigate({
       to: '/playlists/$playlistId',
       params: { playlistId: newId },
+      replace: true,
     });
   }, [playlist, importPlaylist, navigate]);
 

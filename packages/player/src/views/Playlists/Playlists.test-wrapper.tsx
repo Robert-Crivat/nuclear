@@ -46,9 +46,12 @@ export const PlaylistsWrapper = {
     });
   },
 
+  router: null as ReturnType<typeof createRouter> | null,
+
   async mount(): Promise<RenderResult> {
     const history = createMemoryHistory({ initialEntries: ['/playlists'] });
     const router = createRouter({ routeTree, history });
+    this.router = router;
     const component = render(<App routerProp={router} />);
     await screen.findByTestId('playlists-view');
     return component;
