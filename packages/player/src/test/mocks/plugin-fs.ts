@@ -28,6 +28,9 @@ export let watchImmediateCb: ((event: WatchEvent) => void) | null = null;
 const readTextFileMap: Record<string, string> = {};
 
 export const PluginFsMock = {
+  get writeTextFile() {
+    return fs.writeTextFile as Mock;
+  },
   setReadTextFile: (value: string) => {
     (fs.readTextFile as Mock).mockResolvedValue(value);
     return fs.readTextFile as Mock;

@@ -14,6 +14,12 @@ export const getPluginsDir = async (): Promise<string> => {
   return join(base, PLUGINS_DIR_NAME);
 };
 
+export const isManagedPath = async (absPath: string): Promise<boolean> => {
+  const normalizedPath = await normalize(absPath);
+  const normalizedBase = await normalize(await getPluginsDir());
+  return normalizedPath.startsWith(normalizedBase);
+};
+
 export const ensurePluginsDir = async (): Promise<string> => {
   return ensureDir(PLUGINS_DIR_NAME);
 };

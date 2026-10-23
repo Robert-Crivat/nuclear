@@ -1,24 +1,16 @@
-import { normalize } from '@tauri-apps/api/path';
-
 import { usePluginStore } from '../../stores/pluginStore';
 import { useStartupStore } from '../../stores/startupStore';
 import { errorMessage } from '../../utils/errorMessage';
 import { providersHost } from '../providersHost';
 import { createPluginAPI } from './createPluginAPI';
 import { checkAndUpdatePlugins } from './pluginAutoUpdate';
-import { getPluginsDir } from './pluginDir';
+import { isManagedPath } from './pluginDir';
 import { PluginLoader } from './PluginLoader';
 import {
   getRegistryEntry,
   listRegistryEntries,
   setRegistryEntryWarnings,
 } from './pluginRegistry';
-
-const isManagedPath = async (absPath: string): Promise<boolean> => {
-  const normalizedPath = await normalize(absPath);
-  const normalizedBase = await normalize(await getPluginsDir());
-  return normalizedPath.startsWith(normalizedBase);
-};
 
 export const hydratePluginsFromRegistry = async (): Promise<void> => {
   useStartupStore.getState().startStartup();

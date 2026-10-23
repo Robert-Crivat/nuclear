@@ -6,6 +6,10 @@ import { PluginFsMock } from '../../test/mocks/plugin-fs';
 import { compilePlugin } from './pluginCompiler';
 import { PluginLoader } from './PluginLoader';
 
+vi.mock('@tauri-apps/api/app', () => ({
+  getVersion: vi.fn(async () => '1.51.2'),
+}));
+
 vi.mock('./pluginCompiler', () => ({
   compilePlugin: vi.fn(async (path: string) => {
     if (path.endsWith('.ts') || path.endsWith('.tsx')) {
@@ -318,6 +322,53 @@ describe('PluginLoader', () => {
       );
       const result = await loader.load();
       expect(result.instance).toHaveProperty('onLoad');
+    });
+  });
+
+  describe('compiled code cache', () => {
+    const managedPath =
+      '/home/user/.local/share/com.nuclearplayer/plugins/test-plugin/1.0.0';
+    const cachePath = `${managedPath}/compiled-1.51.2.js`;
+    const manifest = JSON.stringify(makeManifest({ main: 'index.ts' }));
+
+    it('compiles a store-installed plugin once and saves the bundle', async () => {
+      PluginFsMock.setReadTextFileByMap({
+        [`${managedPath}/package.json`]: manifest,
+        [`${managedPath}/index.ts`]: 'export default {}',
+      });
+
+      await new PluginLoader(managedPath).load();
+
+      expect(compilePlugin).toHaveBeenCalledOnce();
+      expect(PluginFsMock.writeTextFile).toHaveBeenCalledWith(
+        cachePath,
+        'module.exports = { onLoad(){} };',
+      );
+    });
+
+    it('reuses the saved bundle instead of compiling again', async () => {
+      PluginFsMock.setReadTextFileByMap({
+        [`${managedPath}/package.json`]: manifest,
+        [`${managedPath}/index.ts`]: 'export default {}',
+        [cachePath]: 'module.exports = { onLoad(){} };',
+      });
+
+      const loaded = await new PluginLoader(managedPath).load();
+
+      expect(compilePlugin).not.toHaveBeenCalled();
+      expect(loaded.instance.onLoad).toBeTypeOf('function');
+    });
+
+    it('always compiles plugins loaded from a development folder', async () => {
+      PluginFsMock.setReadTextFileByMap({
+        '/dev/my-plugin/package.json': manifest,
+        '/dev/my-plugin/index.ts': 'export default {}',
+      });
+
+      await new PluginLoader('/dev/my-plugin').load();
+
+      expect(compilePlugin).toHaveBeenCalledOnce();
+      expect(PluginFsMock.writeTextFile).not.toHaveBeenCalled();
     });
   });
 });
