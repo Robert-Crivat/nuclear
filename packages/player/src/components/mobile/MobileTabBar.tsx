@@ -30,16 +30,30 @@ const tabForPath = (pathname: string): Tab | undefined => {
   return undefined;
 };
 
+const TAB_ROOTS: Record<Tab, string> = {
+  home: '/home',
+  search: '/search',
+  library: '/library',
+};
+
 export const MobileTabBar: FC = () => {
   const { t } = useTranslation('navigation');
   const { t: tSearch } = useTranslation('search');
   const navigate = useNavigate();
-  const pathname = useRouterState({
-    select: (state) => state.location.pathname,
-  });
+  const location = useRouterState({ select: (state) => state.location });
   const lastTab = useRef<Tab>('home');
-  lastTab.current = tabForPath(pathname) ?? lastTab.current;
+  const lastHrefs = useRef<Record<Tab, string>>({ ...TAB_ROOTS });
+  const currentTab = tabForPath(location.pathname);
+  if (currentTab) {
+    lastHrefs.current[currentTab] = location.href;
+  }
+  lastTab.current = currentTab ?? lastTab.current;
   const active = lastTab.current;
+
+  const openTab = (tab: Tab) =>
+    navigate({
+      href: tab === active ? TAB_ROOTS[tab] : lastHrefs.current[tab],
+    });
 
   return (
     <BottomNavigation>
@@ -47,21 +61,21 @@ export const MobileTabBar: FC = () => {
         icon={<HomeIcon />}
         label={t('home')}
         isActive={active === 'home'}
-        onClick={() => navigate({ to: '/home' })}
+        onClick={() => openTab('home')}
         data-testid="tab-home"
       />
       <BottomNavigation.Item
         icon={<SearchIcon />}
         label={tSearch('title')}
         isActive={active === 'search'}
-        onClick={() => navigate({ to: '/search', search: { q: '' } })}
+        onClick={() => openTab('search')}
         data-testid="tab-search"
       />
       <BottomNavigation.Item
         icon={<LibraryIcon />}
         label={t('library')}
         isActive={active === 'library'}
-        onClick={() => navigate({ to: '/library' })}
+        onClick={() => openTab('library')}
         data-testid="tab-library"
       />
     </BottomNavigation>

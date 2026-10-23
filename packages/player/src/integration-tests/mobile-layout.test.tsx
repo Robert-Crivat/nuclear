@@ -75,6 +75,26 @@ describe('Mobile layout', () => {
     expect(MobileLayoutWrapper.tabs.isActive('search')).toBe(true);
   });
 
+  it('returns to the last search when switching back to the search tab', async () => {
+    await MobileLayoutWrapper.mount('/search?q=adele');
+
+    await MobileLayoutWrapper.tabs.open('home');
+    await waitFor(() => expect(MobileLayoutWrapper.pathname).toBe('/home'));
+    await MobileLayoutWrapper.tabs.open('search');
+
+    await waitFor(() =>
+      expect(MobileLayoutWrapper.href).toBe('/search?q=adele'),
+    );
+  });
+
+  it('goes back to the tab root when tapping the active tab', async () => {
+    await MobileLayoutWrapper.mount('/search?q=adele');
+
+    await MobileLayoutWrapper.tabs.open('search');
+
+    await waitFor(() => expect(MobileLayoutWrapper.href).toBe('/search?q='));
+  });
+
   it('hides the mini player when nothing is queued', async () => {
     await MobileLayoutWrapper.mount('/home');
 

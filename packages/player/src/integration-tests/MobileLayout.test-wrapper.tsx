@@ -27,6 +27,10 @@ export const MobileLayoutWrapper = {
     return this.router?.state.location.pathname;
   },
 
+  get href() {
+    return this.router?.state.location.href;
+  },
+
   get desktopSidebars() {
     return screen.queryAllByTestId(/^sidebar-(left|right)$/);
   },
