@@ -11,6 +11,7 @@ import { useTranslation } from '@nuclearplayer/i18n';
 import { SettingsNavigationSection } from '@nuclearplayer/ui';
 
 import { useSettingsModalStore } from '../stores/settingsModalStore';
+import { isMobilePlatform } from '../utils/platform';
 import { KeyboardShortcuts } from '../views/KeyboardShortcuts';
 import { Logs } from '../views/Logs/Logs';
 import { Plugins } from '../views/Plugins/Plugins';
@@ -80,7 +81,9 @@ export const useSettingsNavigation = (): SettingsNavigation => {
       {
         id: 'app',
         label: t('navigation.app'),
-        items: APP_TABS.map((tab) => ({
+        items: APP_TABS.filter(
+          (tab) => tab.id !== 'shortcuts' || !isMobilePlatform(),
+        ).map((tab) => ({
           id: tab.id,
           label: t(tab.labelKey),
           icon: tab.icon,

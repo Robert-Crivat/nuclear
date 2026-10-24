@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import type { Track } from '@nuclearplayer/model';
@@ -159,5 +159,37 @@ describe('TrackTable', () => {
     );
     await findByTestId('add-all-to-queue-button');
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('drops the artist and duration columns on narrow screens', async () => {
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: query === '(width < 40rem)',
+      media: query,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    }));
+
+    try {
+      const { container } = render(
+        <TrackTable
+          tracks={makeTracks(30)}
+          labels={labels}
+          display={{ displayArtist: true, displayDuration: true }}
+        />,
+      );
+      await screen.findByText('Track 1');
+
+      const headers = screen.getAllByRole('columnheader');
+      const headerTexts = headers.map((header) => header.textContent);
+      expect(headerTexts).toContain('Title');
+      expect(headerTexts).not.toContain('Artist');
+      expect(headerTexts).not.toContain('Duration');
+      container.querySelectorAll('td[colspan]').forEach((cell) => {
+        expect(cell.getAttribute('colspan')).toBe(String(headers.length));
+      });
+    } finally {
+      window.matchMedia = originalMatchMedia;
+    }
   });
 });

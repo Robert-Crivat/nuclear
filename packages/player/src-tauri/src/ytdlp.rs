@@ -1,8 +1,7 @@
+#[cfg(target_os = "android")]
+use log::warn;
 use log::{debug, error};
-use std::process::{Command, Stdio};
 use tauri::{command, AppHandle};
-
-use crate::ytdlp_setup::ensure_binary;
 
 #[derive(serde::Serialize, Debug, PartialEq, specta::Type)]
 pub struct YtdlpStreamInfo {
@@ -78,12 +77,33 @@ fn build_args<'a>(options: &[&'a str], target: &'a str) -> Vec<&'a str> {
     args
 }
 
+#[cfg(target_os = "android")]
 async fn run_ytdlp(
     app_handle: &AppHandle,
     options: &[&str],
     target: &str,
 ) -> Result<String, String> {
-    let program = ensure_binary(app_handle).await?;
+    let args = build_args(options, target)
+        .into_iter()
+        .map(str::to_string)
+        .collect();
+    crate::android::ytdlp_execute(app_handle, args)
+        .await
+        .map_err(|error| {
+            error!("[yt-dlp] Command failed: {}", error);
+            format!("yt-dlp failed: {}", error)
+        })
+}
+
+#[cfg(not(target_os = "android"))]
+async fn run_ytdlp(
+    app_handle: &AppHandle,
+    options: &[&str],
+    target: &str,
+) -> Result<String, String> {
+    use std::process::{Command, Stdio};
+
+    let program = crate::ytdlp_setup::ensure_binary(app_handle).await?;
     let mut cmd = Command::new(&program);
     cmd.args(build_args(options, target))
         .stdout(Stdio::piped())
@@ -143,6 +163,13 @@ pub async fn ytdlp_search(
     let limit = max_results.unwrap_or(10);
     debug!("[yt-dlp] Searching: {} (limit: {})", query, limit);
 
+    #[cfg(target_os = "android")]
+    match crate::youtube_innertube::search(&query, limit as usize).await {
+        Ok(results) if !results.is_empty() => return Ok(results),
+        Ok(_) => warn!("[innertube] No results for {}, using yt-dlp", query),
+        Err(error) => warn!("[innertube] Search failed, using yt-dlp: {}", error),
+    }
+
     let search_url = format!("ytsearch{}:{}", limit, query);
     let stdout = run_ytdlp(
         &app_handle,
@@ -190,11 +217,21 @@ pub async fn ytdlp_get_stream(
 
     debug!("[yt-dlp] Getting stream for: {}", resolved_url);
 
+    #[cfg(target_os = "android")]
+    if let Some(video_id) = crate::youtube_innertube::video_id_from_url(&resolved_url) {
+        match crate::youtube_innertube::stream(&video_id).await {
+            Ok(info) => return Ok(info),
+            Err(error) => warn!("[innertube] Stream failed, using yt-dlp: {}", error),
+        }
+    }
+
     let stdout = run_ytdlp(
         &app_handle,
         &[
             "-f",
             "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio",
+            "--extractor-args",
+            "youtube:skip=hls",
             "--dump-json",
             "--no-playlist",
             "--no-warnings",

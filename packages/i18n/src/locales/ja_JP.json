@@ -35,7 +35,23 @@
     "playlists": "プレイリスト",
     "history": "履歴",
     "lyrics": "歌詞",
-    "sources": "ソース"
+    "sources": "ソース",
+    "home": "ホーム",
+    "library": "ライブラリ"
+  },
+  "home": {
+    "recentlyPlayed": "最近再生した曲",
+    "yourPlaylists": "あなたのプレイリスト",
+    "favoriteAlbums": "お気に入りのアルバム",
+    "favoriteArtists": "お気に入りのアーティスト",
+    "fromYourPlugins": "プラグインから"
+  },
+  "nowPlaying": {
+    "title": "再生中",
+    "open": "再生中の画面を開く",
+    "close": "再生中の画面を閉じる",
+    "play": "再生",
+    "pause": "一時停止"
   },
   "history": {
     "title": "履歴",

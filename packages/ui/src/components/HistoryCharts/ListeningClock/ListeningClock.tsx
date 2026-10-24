@@ -38,7 +38,10 @@ export const ListeningClock: FC<ListeningClockProps> = ({
   return (
     <div
       data-testid="listening-clock"
-      className={cn('flex items-center gap-8', className)}
+      className={cn(
+        'flex items-center gap-8 max-sm:flex-col max-sm:items-start',
+        className,
+      )}
       {...props}
     >
       <div className="shrink-0" onMouseLeave={() => setHovered(null)}>

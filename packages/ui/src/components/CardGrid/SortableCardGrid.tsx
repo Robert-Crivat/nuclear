@@ -50,7 +50,9 @@ export const SortableCardGrid: FC<SortableCardGridProps> = ({
         strategy={rectSortingStrategy}
         disabled={disabled}
       >
-        <CardGridBase className={cn('gap-x-7 pl-3.5', className)}>
+        <CardGridBase
+          className={cn('gap-x-7 pl-3.5 max-sm:gap-x-4', className)}
+        >
           {children}
         </CardGridBase>
       </SortableContext>

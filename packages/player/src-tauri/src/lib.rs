@@ -1,3 +1,5 @@
+#[cfg(target_os = "android")]
+mod android;
 pub mod bridge;
 pub mod commands;
 pub mod db;
@@ -13,7 +15,11 @@ pub mod pagination;
 pub mod profile;
 mod setup;
 pub mod stream_server;
+#[cfg(any(target_os = "android", test))]
+#[cfg_attr(not(target_os = "android"), allow(dead_code))]
+mod youtube_innertube;
 pub mod ytdlp;
+#[cfg_attr(target_os = "android", path = "ytdlp_setup_android.rs")]
 pub mod ytdlp_setup;
 
 // Maximizes the window when running as a non-steam app in steam
@@ -31,6 +37,7 @@ fn maximize_for_gamescope(app: &tauri::App) {
     }
 }
 
+#[cfg(all(debug_assertions, desktop))]
 fn typescript_export_config() -> specta_typescript::Typescript {
     specta_typescript::Typescript::default().header("/* eslint-disable */")
 }
@@ -75,8 +82,6 @@ fn specta_builder() -> tauri_specta::Builder<tauri::Wry> {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
-
     let profile = profile::parse_profile(std::env::args()).unwrap_or_else(|message| {
         eprintln!("{message}");
         std::process::exit(1);
@@ -90,7 +95,7 @@ pub fn run() {
 
     let specta_builder = specta_builder();
 
-    #[cfg(debug_assertions)]
+    #[cfg(all(debug_assertions, desktop))]
     specta_builder
         .export(
             typescript_export_config(),
@@ -108,20 +113,29 @@ pub fn run() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_upload::init())
-        .plugin(
+        .plugin(setup::log_plugin());
+
+    #[cfg(target_os = "android")]
+    {
+        builder = builder.plugin(android::init());
+    }
+
+    #[cfg(desktop)]
+    {
+        builder = builder.plugin(
             tauri_plugin_window_state::Builder::default()
                 .with_state_flags(
                     tauri_plugin_window_state::StateFlags::all()
                         .difference(tauri_plugin_window_state::StateFlags::VISIBLE),
                 )
                 .build(),
-        )
-        .plugin(setup::log_plugin());
+        );
 
-    if !is_flatpak {
-        builder = builder
-            .plugin(tauri_plugin_updater::Builder::new().build())
-            .plugin(tauri_plugin_process::init());
+        if std::env::var("FLATPAK_ID").is_err() {
+            builder = builder
+                .plugin(tauri_plugin_updater::Builder::new().build())
+                .plugin(tauri_plugin_process::init());
+        }
     }
 
     builder

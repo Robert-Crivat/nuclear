@@ -189,6 +189,32 @@ describe('MseController', () => {
     expect(mediaSource.endOfStream).toHaveBeenCalled();
   });
 
+  it('calls endOfStream when the final segment is appended while another append is queued', async () => {
+    const controller = new MseController();
+    const mediaSource = await fixture.initController(controller);
+
+    const sourceBuffer = mediaSource.sourceBuffers[0];
+    sourceBuffer.buffered = new MockTimeRanges();
+    sourceBuffer.buffered.addRange(0, 60);
+    Object.defineProperty(fixture.audio, 'currentTime', {
+      value: 50,
+      writable: true,
+      configurable: true,
+    });
+    controller.handleTimeUpdate(fixture.audio);
+
+    sourceBuffer.buffered = new MockTimeRanges();
+    Object.defineProperty(fixture.audio, 'currentTime', {
+      value: 170,
+      writable: true,
+      configurable: true,
+    });
+    await controller.handleSeeking(fixture.audio);
+    await flushMicrotasks();
+
+    expect(mediaSource.endOfStream).toHaveBeenCalled();
+  });
+
   it('chain-fetches all remaining segments after a single handleTimeUpdate call', async () => {
     const controller = new MseController();
     const mediaSource = await fixture.initController(controller);

@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BottomNavigation > (Snapshot) renders the items 1`] = `
+<nav
+  class="surface-bottombar flex w-full items-stretch"
+  data-testid="bottom-navigation"
+>
+  <button
+    aria-current="page"
+    class="flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-1 py-2 text-xs transition-opacity font-bold opacity-100"
+    data-testid="bottom-navigation-item"
+    type="button"
+  >
+    <span
+      class="flex size-6 items-center justify-center"
+    >
+      <span />
+    </span>
+    <span
+      class="truncate"
+    >
+      Home
+    </span>
+  </button>
+  <button
+    class="flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-1 py-2 text-xs transition-opacity opacity-60"
+    data-testid="bottom-navigation-item"
+    type="button"
+  >
+    <span
+      class="flex size-6 items-center justify-center"
+    >
+      <span />
+    </span>
+    <span
+      class="truncate"
+    >
+      Library
+    </span>
+  </button>
+</nav>
+`;

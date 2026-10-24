@@ -66,6 +66,7 @@
 ## Development
 
 * [Contributing](development/contributing.md)
+* [Android](development/android.md)
 * [Host pattern](development/host-pattern.md)
 * [Logging](development/logging.md)
 * [MCP Architecture](development/mcp-architecture.md)

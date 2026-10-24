@@ -35,7 +35,23 @@
     "playlists": "Playlists",
     "history": "History",
     "lyrics": "Lyrics",
-    "sources": "Sources"
+    "sources": "Sources",
+    "home": "Início",
+    "library": "Biblioteca"
+  },
+  "home": {
+    "recentlyPlayed": "Tocadas recentemente",
+    "yourPlaylists": "Suas playlists",
+    "favoriteAlbums": "Álbuns favoritos",
+    "favoriteArtists": "Artistas favoritos",
+    "fromYourPlugins": "Dos seus plugins"
+  },
+  "nowPlaying": {
+    "title": "Tocando agora",
+    "open": "Abrir tocando agora",
+    "close": "Fechar tocando agora",
+    "play": "Tocar",
+    "pause": "Pausar"
   },
   "history": {
     "title": "History",

@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as LyricsRouteImport } from './routes/lyrics'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SourcesRouteImport } from './routes/sources'
@@ -37,6 +39,16 @@ const DashboardRoute = DashboardRouteImport.update({
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LyricsRoute = LyricsRouteImport.update({
@@ -101,6 +113,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/library': typeof LibraryRoute
   '/lyrics': typeof LyricsRoute
   '/search': typeof SearchRoute
   '/sources': typeof SourcesRoute
@@ -117,6 +131,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/library': typeof LibraryRoute
   '/lyrics': typeof LyricsRoute
   '/search': typeof SearchRoute
   '/sources': typeof SourcesRoute
@@ -134,6 +150,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/library': typeof LibraryRoute
   '/lyrics': typeof LyricsRoute
   '/search': typeof SearchRoute
   '/sources': typeof SourcesRoute
@@ -152,6 +170,8 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/history'
+    | '/home'
+    | '/library'
     | '/lyrics'
     | '/search'
     | '/sources'
@@ -168,6 +188,8 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/history'
+    | '/home'
+    | '/library'
     | '/lyrics'
     | '/search'
     | '/sources'
@@ -184,6 +206,8 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/history'
+    | '/home'
+    | '/library'
     | '/lyrics'
     | '/search'
     | '/sources'
@@ -201,6 +225,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
   HistoryRoute: typeof HistoryRoute
+  HomeRoute: typeof HomeRoute
+  LibraryRoute: typeof LibraryRoute
   LyricsRoute: typeof LyricsRoute
   SearchRoute: typeof SearchRoute
   SourcesRoute: typeof SourcesRoute
@@ -235,6 +261,20 @@ declare module '@tanstack/react-router' {
       path: '/history'
       fullPath: '/history'
       preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lyrics': {
@@ -321,6 +361,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
   HistoryRoute: HistoryRoute,
+  HomeRoute: HomeRoute,
+  LibraryRoute: LibraryRoute,
   LyricsRoute: LyricsRoute,
   SearchRoute: SearchRoute,
   SourcesRoute: SourcesRoute,

@@ -1,5 +1,77 @@
 [
   {
+    "date": "2026-10-23T00:00",
+    "description": "After seeking close to the end of a track, Nuclear now moves on to the next track instead of stopping at the end.",
+    "type": "fix",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Playback",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
+    "description": "YouTube tracks start playing sooner: Nuclear no longer downloads a stream manifest it doesn't use, and on Android it asks YouTube for search results and streams directly, with yt-dlp as a fallback.",
+    "type": "improvement",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
+    "description": "Plugins start faster: Nuclear keeps their compiled code and only compiles them again after an update.",
+    "type": "improvement",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Plugins",
+        "color": "purple"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
+    "description": "Nuclear now runs on Android, with a phone layout built around Home, Search and Library tabs, a mini player and a full screen now playing view. Music keeps playing in the background with lock screen and notification controls, works with Android Auto, and the app updates itself from GitHub releases.",
+    "type": "feature",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Android",
+        "color": "green"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
+    "description": "Skipping to the next track is faster: Nuclear now resolves its stream while the current track is still playing.",
+    "type": "improvement",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Streaming",
+        "color": "orange"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23T00:00",
+    "description": "The themes folder watcher no longer refreshes the theme list in a loop when the folder is only read.",
+    "type": "fix",
+    "contributors": ["Robert-Crivat"],
+    "tags": [
+      {
+        "label": "Themes",
+        "color": "purple"
+      }
+    ]
+  },
+  {
     "date": "2026-10-22T00:00",
     "description": "Nuclear now verifies the plugins installed from the store to ensure they're safe to install.",
     "type": "improvement",

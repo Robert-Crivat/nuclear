@@ -125,7 +125,7 @@ async fn download_zip(
     use futures::StreamExt;
     use tokio::io::AsyncWriteExt;
 
-    let client = reqwest::Client::builder()
+    let client = crate::net::http_client_builder()
         .timeout(Duration::from_secs(300))
         .connect_timeout(Duration::from_secs(30))
         .build()
@@ -323,7 +323,7 @@ async fn download_and_extract(
 }
 
 async fn fetch_latest_release_tag() -> Result<String, String> {
-    let client = reqwest::Client::builder()
+    let client = crate::net::http_client_builder()
         .timeout(Duration::from_secs(10))
         .build()
         .map_err(|error| format!("HTTP client error: {}", error))?;

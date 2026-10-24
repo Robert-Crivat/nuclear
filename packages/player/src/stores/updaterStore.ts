@@ -1,15 +1,21 @@
 import { relaunch } from '@tauri-apps/plugin-process';
-import { check, type Update } from '@tauri-apps/plugin-updater';
+import { check } from '@tauri-apps/plugin-updater';
 import { create } from 'zustand';
 
+import {
+  checkAndroidUpdate,
+  installAndroidUpdate,
+  type AppUpdate,
+} from '../services/androidUpdater';
 import { Logger } from '../services/logger';
 import { errorMessage } from '../utils/errorMessage';
 import { reportError } from '../utils/logging';
+import { isMobilePlatform } from '../utils/platform';
 import { getSetting } from './settingsStore';
 
 type UpdaterState = {
   isUpdateAvailable: boolean;
-  updateInfo: Update | null;
+  updateInfo: AppUpdate | null;
   lastChecked: Date | null;
   isChecking: boolean;
   isDownloading: boolean;
@@ -41,7 +47,9 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
 
     set({ isChecking: true, error: null });
     try {
-      const update = await check();
+      const update = isMobilePlatform()
+        ? await checkAndroidUpdate()
+        : await check();
       set({
         isUpdateAvailable: update !== null,
         updateInfo: update,
@@ -109,7 +117,11 @@ export const useUpdaterStore = create<UpdaterState>((set, get) => ({
 
   restartToUpdate: async () => {
     try {
-      await relaunch();
+      if (isMobilePlatform()) {
+        await installAndroidUpdate();
+      } else {
+        await relaunch();
+      }
     } catch (error) {
       await reportError('updates', {
         userMessage: 'Failed to restart for update',

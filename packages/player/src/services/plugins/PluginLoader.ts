@@ -1,5 +1,6 @@
+import { getVersion } from '@tauri-apps/api/app';
 import { join } from '@tauri-apps/api/path';
-import { readTextFile } from '@tauri-apps/plugin-fs';
+import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
 import React from 'react';
 import * as jsxRuntime from 'react/jsx-runtime';
 
@@ -15,6 +16,7 @@ import * as nuclearUI from '@nuclearplayer/ui';
 import { errorMessage } from '../../utils/errorMessage';
 import { Logger } from '../logger';
 import { compilePlugin } from './pluginCompiler';
+import { isManagedPath } from './pluginDir';
 import { safeParsePluginManifest } from './pluginManifest';
 
 export class PluginLoader {
@@ -98,7 +100,47 @@ export class PluginLoader {
     );
   }
 
+  private async compiledCachePath(): Promise<string | undefined> {
+    try {
+      const appVersion = await getVersion();
+      if (!appVersion || !(await isManagedPath(this.path))) {
+        return undefined;
+      }
+      return await join(this.path, `compiled-${appVersion}.js`);
+    } catch {
+      return undefined;
+    }
+  }
+
+  private async readCompiledCache(
+    cachePath: string,
+  ): Promise<string | undefined> {
+    try {
+      return await readTextFile(cachePath);
+    } catch {
+      return undefined;
+    }
+  }
+
+  private async writeCompiledCache(cachePath: string, code: string) {
+    try {
+      await writeTextFile(cachePath, code);
+    } catch (error) {
+      Logger.plugins.warn(
+        `Could not cache compiled plugin at ${cachePath}: ${errorMessage(error)}`,
+      );
+    }
+  }
+
   private async readPluginCode(entryPath: string): Promise<string> {
+    const cachePath = await this.compiledCachePath();
+    const cached = cachePath && (await this.readCompiledCache(cachePath));
+    if (cached) {
+      Logger.plugins.debug(`Using compiled plugin cache ${cachePath}`);
+      this.pluginCode = cached;
+      return cached;
+    }
+
     Logger.plugins.debug(`Compiling plugin from ${entryPath}`);
     const compiled = await compilePlugin(entryPath);
     if (compiled != null) {
@@ -106,6 +148,9 @@ export class PluginLoader {
         `Plugin compiled successfully (${compiled.length} chars)`,
       );
       this.pluginCode = compiled;
+      if (cachePath) {
+        await this.writeCompiledCache(cachePath, compiled);
+      }
       return compiled;
     }
     Logger.plugins.debug(`Reading pre-compiled plugin code from ${entryPath}`);

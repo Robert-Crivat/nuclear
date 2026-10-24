@@ -1,4 +1,8 @@
-import { BaseDirectory, watchImmediate } from '@tauri-apps/plugin-fs';
+import {
+  BaseDirectory,
+  watchImmediate,
+  type WatchEvent,
+} from '@tauri-apps/plugin-fs';
 
 import { useThemeStore } from '../stores/themeStore';
 import { createDebouncedBatcher } from '../utils/debouncedBatcher';
@@ -53,13 +57,25 @@ const changedPathsBatcher = createDebouncedBatcher<string>({
   },
 });
 
+const isReadOnlyAccess = (event: WatchEvent) => {
+  if (typeof event.type !== 'object' || !('access' in event.type)) {
+    return false;
+  }
+  const access = event.type.access;
+  return !(access.kind === 'close' && access.mode === 'write');
+};
+
 const initAdvancedThemeWatcher = async (): Promise<void> => {
   const dir = await ensureThemesDir();
   await refreshAdvancedThemeList();
   try {
     unwatch = await watchImmediate(
       dir,
-      (event) => changedPathsBatcher.push(event.paths),
+      (event) => {
+        if (!isReadOnlyAccess(event)) {
+          changedPathsBatcher.push(event.paths);
+        }
+      },
       { baseDir: BaseDirectory.AppData },
     );
   } catch (error) {

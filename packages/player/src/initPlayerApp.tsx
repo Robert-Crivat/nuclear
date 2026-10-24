@@ -16,9 +16,12 @@ import {
 } from './services/languageService';
 import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
+import { initMobileBackHandler } from './services/mobileBackHandler';
+import { initMobileMediaSession } from './services/mobileMediaSession';
 import { initMpdHandler } from './services/mpd';
 import { initPlaybackEventBridge } from './services/playbackEventBridge';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
+import { initNextTrackPrefetch } from './services/streamResolution/nextTrackPrefetch';
 import { initializeFavoritesStore } from './stores/favoritesStore';
 import { initializePlaylistStore } from './stores/playlistStore';
 import { initializeQueueStore } from './stores/queueStore';
@@ -66,7 +69,10 @@ export const initPlayerApp = async (
     .then(() => initDiscoveryService())
     .then(() => initRemoteControl())
     .then(() => initDiscordHandler())
+    .then(() => initMobileMediaSession())
+    .then(() => initMobileBackHandler())
     .then(() => initPlaybackEventBridge())
+    .then(() => initNextTrackPrefetch())
     .then(() => initHistoryService())
     .then(() => initLanguage())
     .then(() => initThemes())

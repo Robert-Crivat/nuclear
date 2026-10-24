@@ -14,7 +14,10 @@ export const PluginStoreItemSkeleton: FC<PluginStoreItemSkeletonProps> = ({
   <Box
     data-testid="plugin-store-item-skeleton"
     variant="tertiary"
-    className={cn('flex-row items-center justify-between gap-4', className)}
+    className={cn(
+      'flex-row items-center justify-between gap-4 max-sm:flex-col max-sm:items-start',
+      className,
+    )}
   >
     <div className="flex min-w-0 flex-1 flex-col gap-1">
       <div className="flex h-5 items-center gap-2">

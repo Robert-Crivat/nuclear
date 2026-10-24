@@ -155,6 +155,20 @@ describe('import from URL', () => {
     expect(screen.getByText('Coastal Breeze')).toBeInTheDocument();
   });
 
+  it('goes back to the playlists after saving an imported playlist', async () => {
+    PlaylistsWrapper.registerPlaylistProvider(exampleProvider());
+
+    await PlaylistsWrapper.mount();
+    await importPlaylistFromUrl();
+    await userEvent.click(screen.getByTestId('playlist-actions-button'));
+    await userEvent.click(screen.getByTestId('save-locally-action'));
+    await screen.findByTestId('playlist-detail-title');
+
+    PlaylistsWrapper.router?.history.back();
+
+    expect(await screen.findByTestId('playlists-view')).toBeInTheDocument();
+  });
+
   it('shows an error when no providers are registered', async () => {
     await PlaylistsWrapper.mount();
     await PlaylistsWrapper.import.fromUrl.click();

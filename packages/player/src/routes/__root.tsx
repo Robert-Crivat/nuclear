@@ -1,25 +1,12 @@
-import { createRootRoute } from '@tanstack/react-router';
+import { createRootRoute, useRouterState } from '@tanstack/react-router';
 import { getCurrentWindow } from '@tauri-apps/api/window';
-import {
-  CableIcon,
-  DiscIcon,
-  GaugeIcon,
-  HistoryIcon,
-  ListMusicIcon,
-  MicVocalIcon,
-  MusicIcon,
-  SettingsIcon,
-  UserIcon,
-} from 'lucide-react';
-import { useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 
-import { useTranslation } from '@nuclearplayer/i18n';
 import {
   PlayerShell,
   PlayerWorkspace,
   RouteTransition,
   SidebarNavigation,
-  SidebarNavigationItem,
   Toaster,
 } from '@nuclearplayer/ui';
 
@@ -34,16 +21,21 @@ import { ConnectedTitleBar } from '../components/ConnectedTitleBar';
 import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
+import { ConnectedMiniPlayer } from '../components/mobile/ConnectedMiniPlayer';
+import { ConnectedNowPlayingScreen } from '../components/mobile/ConnectedNowPlayingScreen';
+import { MobileHeader } from '../components/mobile/MobileHeader';
+import { MobileTabBar } from '../components/mobile/MobileTabBar';
+import { MobileQueueDrawer } from '../components/MobileQueueDrawer';
+import { NavigationItems } from '../components/NavigationItems';
 import { SoundProvider } from '../components/SoundProvider';
 import { StreamResolver } from '../components/StreamResolver';
+import { useSystemBarColors } from '../hooks/useSystemBarColors';
 import { GlobalShortcuts } from '../shortcuts';
 import { useLayoutStore } from '../stores/layoutStore';
-import { useSettingsModalStore } from '../stores/settingsModalStore';
 import { useStartupStore } from '../stores/startupStore';
+import { isMobilePlatform } from '../utils/platform';
 
-const RootComponent = () => {
-  const { t } = useTranslation('navigation');
-  const { t: tPrefs } = useTranslation('preferences');
+const DesktopRoot: FC = () => {
   const {
     leftSidebar,
     rightSidebar,
@@ -52,7 +44,6 @@ const RootComponent = () => {
     setLeftSidebarWidth,
     setRightSidebarWidth,
   } = useLayoutStore();
-  const openSettings = useSettingsModalStore((state) => state.open);
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
   useEffect(() => {
     const window = getCurrentWindow();
@@ -76,53 +67,7 @@ const RootComponent = () => {
             onToggle={toggleLeftSidebar}
           >
             <SidebarNavigation isCompact={leftSidebar.isCollapsed}>
-              <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
-                <SidebarNavigationItem
-                  to="/dashboard"
-                  icon={<GaugeIcon />}
-                  label={t('dashboard')}
-                />
-                <SidebarNavigationItem
-                  to="/favorites/albums"
-                  icon={<DiscIcon />}
-                  label={t('favoriteAlbums')}
-                />
-                <SidebarNavigationItem
-                  to="/favorites/tracks"
-                  icon={<MusicIcon />}
-                  label={t('favoriteTracks')}
-                />
-                <SidebarNavigationItem
-                  to="/favorites/artists"
-                  icon={<UserIcon />}
-                  label={t('favoriteArtists')}
-                />
-                <SidebarNavigationItem
-                  to="/playlists"
-                  icon={<ListMusicIcon />}
-                  label={t('playlists')}
-                />
-                <SidebarNavigationItem
-                  to="/history"
-                  icon={<HistoryIcon />}
-                  label={t('history')}
-                />
-                <SidebarNavigationItem
-                  to="/lyrics"
-                  icon={<MicVocalIcon />}
-                  label={t('lyrics')}
-                />
-                <SidebarNavigationItem
-                  to="/sources"
-                  icon={<CableIcon />}
-                  label={t('sources')}
-                />
-              </div>
-              <SidebarNavigationItem
-                icon={<SettingsIcon />}
-                label={tPrefs('title')}
-                onClick={() => openSettings()}
-              />
+              <NavigationItems />
             </SidebarNavigation>
           </PlayerWorkspace.LeftSidebar>
 
@@ -150,6 +95,62 @@ const RootComponent = () => {
     </PlayerShell>
   );
 };
+
+const MOBILE_TOAST_OFFSET = { bottom: 136 };
+
+const MobileRoot: FC = () => {
+  const isStartingUp = useStartupStore((state) => state.isStartingUp);
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+  const [isNowPlayingOpen, setNowPlayingOpen] = useState(false);
+  const [isQueueOpen, setQueueOpen] = useState(false);
+  useSystemBarColors();
+
+  useEffect(() => {
+    setNowPlayingOpen(false);
+    setQueueOpen(false);
+  }, [pathname]);
+
+  return (
+    <PlayerShell>
+      <div className="surface-topbar">
+        <MobileHeader />
+      </div>
+      {!isStartingUp && <StreamResolver />}
+      <SoundProvider>
+        <PlayerWorkspace.Main className="min-h-0">
+          <RouteTransition />
+        </PlayerWorkspace.Main>
+      </SoundProvider>
+      <footer className="surface-bottombar border-border flex flex-col border-t-(length:--border-width)">
+        <div className="px-2 pt-2 empty:hidden">
+          <ConnectedMiniPlayer onOpen={() => setNowPlayingOpen(true)} />
+        </div>
+        <MobileTabBar />
+      </footer>
+
+      <ConnectedNowPlayingScreen
+        isOpen={isNowPlayingOpen}
+        onClose={() => setNowPlayingOpen(false)}
+        onOpenQueue={() => setQueueOpen(true)}
+      />
+      <MobileQueueDrawer
+        isOpen={isQueueOpen}
+        onClose={() => setQueueOpen(false)}
+      />
+      <Toaster
+        position="bottom-center"
+        offset={MOBILE_TOAST_OFFSET}
+        mobileOffset={MOBILE_TOAST_OFFSET}
+      />
+      <ConnectedSettingsModal />
+    </PlayerShell>
+  );
+};
+
+const RootComponent: FC = () =>
+  isMobilePlatform() ? <MobileRoot /> : <DesktopRoot />;
 
 export const Route = createRootRoute({
   component: RootComponent,

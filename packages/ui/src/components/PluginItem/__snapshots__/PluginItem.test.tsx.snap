@@ -81,7 +81,7 @@ exports[`PluginItem > (Snapshot) renders disabled state 1`] = `
             </p>
           </div>
           <div
-            class="flex h-full shrink-0 flex-col items-end justify-between sm:w-auto sm:items-end"
+            class="flex h-full shrink-0 flex-col items-end justify-between max-sm:w-full max-sm:flex-row-reverse max-sm:items-center sm:w-auto sm:items-end"
           >
             <span
               class="text-muted-foreground flex flex-row items-baseline gap-2 text-sm font-normal"
@@ -148,7 +148,7 @@ exports[`PluginItem > (Snapshot) renders rightAccessory content 1`] = `
             </p>
           </div>
           <div
-            class="flex h-full shrink-0 flex-col items-end justify-between sm:w-auto sm:items-end"
+            class="flex h-full shrink-0 flex-col items-end justify-between max-sm:w-full max-sm:flex-row-reverse max-sm:items-center sm:w-auto sm:items-end"
           >
             <div
               class=""
@@ -253,7 +253,7 @@ exports[`PluginItem > (Snapshot) renders with all props 1`] = `
             </p>
           </div>
           <div
-            class="flex h-full shrink-0 flex-col items-end justify-between sm:w-auto sm:items-end"
+            class="flex h-full shrink-0 flex-col items-end justify-between max-sm:w-full max-sm:flex-row-reverse max-sm:items-center sm:w-auto sm:items-end"
           >
             <span
               class="text-muted-foreground flex flex-row items-baseline gap-2 text-sm font-normal"

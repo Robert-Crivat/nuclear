@@ -7,7 +7,7 @@ import { useLogViewerContext } from './context';
 export type LogToolbarProps = {
   onClear: () => void;
   onExport: () => void | Promise<void>;
-  onOpenLogFolder: () => void;
+  onOpenLogFolder?: () => void;
 };
 
 export const LogToolbar: FC<LogToolbarProps> = ({
@@ -43,10 +43,12 @@ export const LogToolbar: FC<LogToolbarProps> = ({
         )}
         {labels.exportButton}
       </Button>
-      <Button size="sm" onClick={onOpenLogFolder}>
-        <FolderOpen className="mr-1 size-4" />
-        {labels.openLogFolderButton}
-      </Button>
+      {onOpenLogFolder && (
+        <Button size="sm" onClick={onOpenLogFolder}>
+          <FolderOpen className="mr-1 size-4" />
+          {labels.openLogFolderButton}
+        </Button>
+      )}
     </div>
   );
 };

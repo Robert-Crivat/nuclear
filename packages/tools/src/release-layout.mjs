@@ -52,4 +52,8 @@ export const releaseLayout = (version) => [
     artifact: 'snap',
     path: `nuclear_${version}_amd64.snap`,
   },
+  {
+    artifact: 'android',
+    path: `Nuclear_${version}_android.apk`,
+  },
 ];

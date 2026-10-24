@@ -3,6 +3,7 @@ import { LogViewer, ViewShell } from '@nuclearplayer/ui';
 
 import { useLogExport } from '../../hooks/useLogExport';
 import { useLogStream } from '../../hooks/useLogStream';
+import { isMobilePlatform } from '../../utils/platform';
 
 export const Logs = () => {
   const { t } = useTranslation('logs');
@@ -17,7 +18,7 @@ export const Logs = () => {
         scopes={scopes}
         onClear={clearLogs}
         onExport={exportLogs}
-        onOpenLogFolder={openLogFolder}
+        onOpenLogFolder={isMobilePlatform() ? undefined : openLogFolder}
       />
     </ViewShell>
   );

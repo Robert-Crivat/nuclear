@@ -14,13 +14,14 @@ import { DASHBOARD_WIDGETS, DashboardWidgetEntry } from './dashboardWidgets';
 const DashboardContent: FC<{
   isStartingUp: boolean;
   activeWidgets: DashboardWidgetEntry[];
-}> = ({ isStartingUp, activeWidgets }) => {
+  showEmptyState: boolean;
+}> = ({ isStartingUp, activeWidgets, showEmptyState }) => {
   if (isStartingUp) {
     return <DashboardStartupSkeleton />;
   }
 
   if (isEmpty(activeWidgets)) {
-    return <DashboardEmptyState />;
+    return showEmptyState ? <DashboardEmptyState /> : null;
   }
 
   return activeWidgets.map(({ capability, component: Widget }) => (
@@ -28,8 +29,9 @@ const DashboardContent: FC<{
   ));
 };
 
-export const Dashboard: FC = () => {
-  const { t } = useTranslation('dashboard');
+export const DashboardWidgets: FC<{ showEmptyState?: boolean }> = ({
+  showEmptyState = true,
+}) => {
   const isStartingUp = useStartupStore((state) => state.isStartingUp);
   const providers = useProviders('dashboard') as DashboardProvider[];
 
@@ -44,11 +46,20 @@ export const Dashboard: FC = () => {
   }, [providers]);
 
   return (
+    <DashboardContent
+      isStartingUp={isStartingUp}
+      activeWidgets={activeWidgets}
+      showEmptyState={showEmptyState}
+    />
+  );
+};
+
+export const Dashboard: FC = () => {
+  const { t } = useTranslation('dashboard');
+
+  return (
     <ViewShell data-testid="dashboard-view" title={t('title')}>
-      <DashboardContent
-        isStartingUp={isStartingUp}
-        activeWidgets={activeWidgets}
-      />
+      <DashboardWidgets />
     </ViewShell>
   );
 };

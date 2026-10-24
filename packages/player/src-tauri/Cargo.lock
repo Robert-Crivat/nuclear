@@ -3792,6 +3792,7 @@ dependencies = [
  "tokio",
  "tokio-util",
  "uuid 1.26.1",
+ "webpki-root-certs",
  "zip 8.6.0",
 ]
 

@@ -35,7 +35,23 @@
     "playlists": "Playlists",
     "history": "History",
     "lyrics": "Lyrics",
-    "sources": "Sources"
+    "sources": "Sources",
+    "home": "首页",
+    "library": "资料库"
+  },
+  "home": {
+    "recentlyPlayed": "最近播放",
+    "yourPlaylists": "你的播放列表",
+    "favoriteAlbums": "收藏的专辑",
+    "favoriteArtists": "收藏的艺人",
+    "fromYourPlugins": "来自你的插件"
+  },
+  "nowPlaying": {
+    "title": "正在播放",
+    "open": "打开正在播放",
+    "close": "关闭正在播放",
+    "play": "播放",
+    "pause": "暂停"
   },
   "history": {
     "title": "History",

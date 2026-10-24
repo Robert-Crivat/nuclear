@@ -10,6 +10,7 @@ import {
 import { useQueueActions } from '../hooks/useQueueActions';
 import { useTrackActions } from '../hooks/useTrackActions';
 import { useTrackTableLabels } from '../hooks/useTrackTableLabels';
+import { isMobilePlatform } from '../utils/platform';
 import { ConnectedTrackContextMenu } from './ConnectedTrackContextMenu';
 
 type ConnectedTrackTableProps = Omit<
@@ -25,6 +26,12 @@ export const ConnectedTrackTable: FC<ConnectedTrackTableProps> = (props) => {
   const queueActions = useQueueActions();
   const labels = useTrackTableLabels();
 
+  const playFromTrack = (track: Track) => {
+    queueActions.clearQueue();
+    queueActions.addToQueue(restProps.tracks);
+    queueActions.goToIndex(restProps.tracks.indexOf(track));
+  };
+
   return (
     <TrackTable
       {...restProps}
@@ -35,7 +42,7 @@ export const ConnectedTrackTable: FC<ConnectedTrackTableProps> = (props) => {
       }}
       actions={{
         onAddToQueue: trackActions.addToQueue,
-        onPlayNow: trackActions.playNow,
+        onPlayNow: isMobilePlatform() ? playFromTrack : trackActions.playNow,
         onPlayNext: trackActions.addNext,
         onToggleFavorite: trackActions.toggleFavorite,
         onRemove: externalActions?.onRemove,

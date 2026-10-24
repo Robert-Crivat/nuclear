@@ -100,7 +100,7 @@ export const PluginItem: FC<PluginItemProps> = ({
             </p>
           </div>
 
-          <div className="flex h-full shrink-0 flex-col items-end justify-between sm:w-auto sm:items-end">
+          <div className="flex h-full shrink-0 flex-col items-end justify-between max-sm:w-full max-sm:flex-row-reverse max-sm:items-center sm:w-auto sm:items-end">
             {rightAccessory && (
               <div className={cn({ 'pointer-events-none': isLoading })}>
                 {rightAccessory}
